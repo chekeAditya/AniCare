@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "178663434779",
+    "firebase_url": "https://anicaremals-default-rtdb.firebaseio.com",
+    "project_id": "anicaremals",
+    "storage_bucket": "anicaremals.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178663434779:android:7da0c7d48fc4fbfde9e6be",
+        "android_client_info": {
+          "package_name": "com.application.anicaremals"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "178663434779-624o7i9p07kr8dsis3h6atcg83tf81ib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.application.anicaremals",
+            "certificate_hash": "87978e7ec24ccd9551ff9e99dc284d4668920e97"
+          }
+        },
+        {
+          "client_id": "178663434779-hamkooenuv9d063aso1pdo6k16a7kv9u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlqfNghJWXUt03vI9Q26pB8emdzMxvLyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "178663434779-hamkooenuv9d063aso1pdo6k16a7kv9u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
