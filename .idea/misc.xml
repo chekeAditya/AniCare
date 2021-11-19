@@ -4,7 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/activity_main.xml" value="0.38697916666666665" />
+        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/drawable/rectangleshapre.xml" value="0.23055555555555557" />
+        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/activity_animal_add.xml" value="0.1793478260869565" />
         <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
+        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/activity_main2.xml" value="0.1793478260869565" />
+        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/animal_add_layout.xml" value="0.1793478260869565" />
+        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/animal_item_layout.xml" value="0.2" />
       </map>
     </option>
   </component>
