@@ -74,9 +74,7 @@ class MainActivity : AppCompatActivity(), CLickinter {
 
                 Log.d("sudrshan", "Error")
             }
-
         })
-
     }
 
     override fun OnClick(responseModel: ResponseModel) {
