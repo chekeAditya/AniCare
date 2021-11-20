@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -7,23 +8,16 @@
         android:layout_height="match_parent"
         tools:context=".ui.BaseActivity">
 
-        <ScrollView
+        <fragment
+            android:id="@+id/navHostFragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-            <fragment
-                android:id="@+id/navHostFragment"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="0dp"
-                app:defaultNavHost="true"
-                app:navGraph="@navigation/nav_graph" />
-
-
-        </ScrollView>
+            android:layout_height="match_parent"
+            android:layout_above="@+id/cvBottom"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvBottom"

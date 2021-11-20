@@ -9,10 +9,8 @@ import android.widget.Toast
 import androidx.core.net.toUri
 import com.application.anicaremals.R
 import com.application.anicaremals.remote.response.ResponseModel
-import com.application.anicaremals.ui.home.DummyFragment
-import com.application.anicaremals.ui.home.MainActivity
+import com.application.anicaremals.ui.BaseActivity
 import com.google.android.gms.tasks.Continuation
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -47,7 +45,7 @@ class AddAnimalActivity : AppCompatActivity() {
 //                val fragmentTransaction = supportFragmentManager.beginTransaction()
 //                fragmentTransaction.replace(R.id.FragmentContanier12, DummyFragment(), "DummyFragment").commit()
 
-                val intent = Intent(this,MainActivity::class.java)
+                val intent = Intent(this,BaseActivity::class.java)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Please fill the Credentials", Toast.LENGTH_SHORT).show()

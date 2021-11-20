@@ -19,8 +19,12 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.application.anicaremals.R;
+import com.application.anicaremals.remote.response.Sms;
+import com.application.anicaremals.viewmodels.ApplicationViewModels;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarData;
@@ -32,6 +36,8 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 public class PremiumBaseFragment extends Fragment {
@@ -39,6 +45,8 @@ public class PremiumBaseFragment extends Fragment {
 
     ArrayList<BarEntry> barEntries = new ArrayList<>();
     ArrayList<PieEntry> pieEntries = new ArrayList<>();
+    ApplicationViewModels viewModels;
+    List<Sms> list =  Collections.emptyList();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,10 +57,20 @@ public class PremiumBaseFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        viewModels = new ViewModelProvider(this).get(ApplicationViewModels.class);
 
         //initViews
         BarChart barChart = view.findViewById(R.id.barChart);
         PieChart pieChart = view.findViewById(R.id.pieChart);
+
+        //settingup viewModel to get live update
+//        viewModels.getSms().observe(getViewLifecycleOwner(), new Observer<List<? extends Sms>>() {
+//            @Override
+//            public void onChanged(List<? extends Sms> sms) {
+//
+//            }
+//        });
+
         fetchSMSDetails();
 
         //settingUp the layout
@@ -79,12 +97,14 @@ public class PremiumBaseFragment extends Fragment {
             int i = 0;
             while (cursor.moveToNext()) {
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.ADDRESS));
-                if (name.contains("57575791")) {
-                    String details = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.BODY));
-                    String number = details.substring(details.length() - 4);
-                    pieEntries.add(new PieEntry(cursor.getCount(), number));
-                    barEntries.add(new BarEntry(i, Float.parseFloat(number)));
-                    i++;
+                if(name != null) {
+                    if (name.contains("57575791")) {
+                        String details = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.BODY));
+                        String number = details.substring(details.length() - 4);
+                        pieEntries.add(new PieEntry(cursor.getCount(), number));
+                        barEntries.add(new BarEntry(i, Float.parseFloat(number)));
+                        i++;
+                    }
                 }
             }
         }
@@ -106,13 +126,6 @@ public class PremiumBaseFragment extends Fragment {
     }
 
     private void settingUpBarChart(BarChart barChart) {
-//        barEntries.add(new BarEntry(1, 420));
-//        barEntries.add(new BarEntry(2, 475));
-//        barEntries.add(new BarEntry(3, 508));
-//        barEntries.add(new BarEntry(4, 660));
-//        barEntries.add(new BarEntry(5, 550));
-//        barEntries.add(new BarEntry(6, 630));
-//        barEntries.add(new BarEntry(7, 470));
 
         BarDataSet barDataSet = new BarDataSet(barEntries, "");
         barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
@@ -125,4 +138,22 @@ public class PremiumBaseFragment extends Fragment {
         barChart.getDescription().setText("Temperature...");
         barChart.animateY(2000);
     }
+
+    private void setSmsList(List<Sms> newSmsList){
+        list = newSmsList;
+        notify();
+    }
+
 }
+
+/*
+
+
+private var contacts: List<Contact>? = emptyList()
+
+fun setContactList(newContactList: List<Contact>?) {
+        contacts = newContactList
+        notifyDataSetChanged()
+    }
+
+ */

@@ -2,16 +2,11 @@ package com.application.anicaremals.ui.home
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
 import android.content.DialogInterface
-import android.content.SharedPreferences
-import android.os.Build
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.application.anicaremals.R
@@ -21,8 +16,6 @@ import com.application.anicaremals.databinding.ProfileAnimalItemLayoutBinding
 import com.application.anicaremals.remote.response.ResponseModel
 import com.bumptech.glide.Glide
 import com.google.firebase.database.FirebaseDatabase
-import java.sql.Ref
-import javax.xml.transform.ErrorListener
 
 class AnimalAdaptor(
     var list: List<ResponseModel>,

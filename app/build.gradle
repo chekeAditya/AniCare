@@ -89,4 +89,21 @@ dependencies {
     //chart library
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    //coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
+
+    //livedata
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
+
+    //livdata
+    // Lifecycle components
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$rootProject.lifecycle_version"
+
+    // Coroutines
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
+
+
 }
