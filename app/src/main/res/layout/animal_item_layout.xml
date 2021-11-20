@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivImageDisplay"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+               android:layout_margin="5dp" />
+
+
+            <TextView
+                android:id="@+id/tvAnimalDetials"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvAnimalCategory"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/ivImageDisplay"
+                android:text="Hey the Animals Deatils are as follow " />
+
+            <TextView
+                android:id="@+id/tvAnimalCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/ivImageDisplay"
+                android:text="Dog" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
