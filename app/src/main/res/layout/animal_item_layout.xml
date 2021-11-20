@@ -3,24 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:id="@+id/addcardview"
         app:cardCornerRadius="20dp">
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/ivImageDisplay"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="10dp"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/car1"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                app:cardCornerRadius="15dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="10dp" />
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivImageDisplay"
+                    android:layout_width="100dp"
+                    android:scaleType="fitXY"
+                    android:layout_height="120dp"
+                    android:src="@drawable/aditya"
+                    app:cardCornerRadius="30dp" />
+            </androidx.cardview.widget.CardView>
 
 
             <TextView
@@ -28,18 +36,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvAnimalCategory"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/ivImageDisplay"
                 android:text="Hey the Animals Deatils are as follow " />
 
             <TextView
                 android:id="@+id/tvAnimalCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_below="@id/car1"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
-                android:layout_toRightOf="@id/ivImageDisplay"
                 android:text="Dog" />
 
             <TextView
@@ -48,15 +55,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvAnimalDetials"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/ivImageDisplay"
-                android:text="0" />
+                android:paddingTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:drawableLeft="@drawable/ic_baseline_location_on_24"
+                android:text="address" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="  : Views"
-                android:layout_toRightOf="@id/count"
-                android:layout_below="@id/tvAnimalDetials"
-                android:layout_height="wrap_content" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </layout>

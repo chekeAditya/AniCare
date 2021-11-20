@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,32 +10,95 @@
         android:id="@+id/tvDetialsImageView"
         android:layout_width="match_parent"
         android:layout_height="400dp"
+        android:background="#be1558"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/rrl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="400dp"
+        android:background="@color/white">
+
+    </RelativeLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv2"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="350dp"
+        app:cardCornerRadius="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvdetailsanmialbread"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="4dp"
+                android:text="Dog"
+                android:textSize="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tvdetialAnimalDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginBottom="16dp"
+                android:text="Animal Description"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/user1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cv2"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="30dp"
+        android:text="User Name: " />
 
     <TextView
         android:id="@+id/tvDetailusername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="posted by sudrshan"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetialsImageView" />
+        android:layout_below="@id/cv2"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/user1"
+        android:text="posted by sudrshan" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btndetialcall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/user2"
+        android:layout_margin="20dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="#228B22"
-        android:id="@+id/btndetialcall"
-        android:src="@drawable/ic_baseline_call_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.89"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetialsImageView" />
+        android:src="@drawable/ic_baseline_call_24" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user2"
+        android:layout_marginTop="35dp"
+        android:layout_toRightOf="@id/btndetialcall"
+        android:text="You can call a Person " />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btndetialmess"
@@ -44,50 +107,47 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="#fada5e"
         android:src="@drawable/ic_baseline_email_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.675"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetialsImageView" />
+       android:layout_below="@id/btndetialcall"
+        android:layout_margin="20dp"/>
 
     <TextView
-        android:id="@+id/tvdetailsanmialbread"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="28dp"
-        android:text="Dog"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetailusername" />
-
-    <TextView
-        android:id="@+id/tvdetialAnimalDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="68dp"
-        android:text="Animal Description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetailusername" />
+        android:layout_below="@id/user2"
+        android:layout_marginTop="135dp"
+        android:layout_toRightOf="@id/btndetialmess"
+        android:text="You can Message a Person" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/user1"
         android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/ic_baseline_location_on_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvdetialAnimalDescription" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/user2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user1"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/imageView2"
+        android:text="User Location : " />
 
     <TextView
         android:id="@+id/tvUserDettiallocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/user1"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/user2"
         android:text="User Location"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/tvDetialsImageView" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

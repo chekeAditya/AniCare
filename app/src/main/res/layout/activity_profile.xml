@@ -4,18 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".ui.home.ProfileActivity">
+
 
     <ImageView
         android:id="@+id/image12"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:scaleType="fitXY"
-        android:src="@drawable/backgroundgreen" />
+        android:background="#e52165" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
         android:src="@drawable/aditya" />
@@ -27,7 +30,7 @@
         android:layout_below="@id/image12"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:text="User Name : Aditya Cheke" />
+        android:text="User Name:Aditya Cheke" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,12 +51,9 @@
         android:text="Location : Maharashtra" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/profilerecyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/profilerecyclerview"
         android:layout_below="@id/profilelocation"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp" />
+        android:background="@drawable/background_topandright_close" />
 </RelativeLayout>

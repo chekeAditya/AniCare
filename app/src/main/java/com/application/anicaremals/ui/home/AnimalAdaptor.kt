@@ -67,6 +67,7 @@ class AnimalHolder(
 
         itemLayoutBinding.tvAnimalCategory.text = responseModel.animal_category.toString()
         itemLayoutBinding.tvAnimalDetials.text = responseModel.animal_details.toString()
+        itemLayoutBinding.count.text = responseModel.user_address.toString()
         Glide.with(itemLayoutBinding.ivImageDisplay).load(responseModel.animal_image)
             .into(itemLayoutBinding.ivImageDisplay)
     }

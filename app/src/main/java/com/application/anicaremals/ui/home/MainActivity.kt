@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.FragmentManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.application.anicaremals.R
 import com.application.anicaremals.databinding.ActivityMainBinding
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity(), CLickinter {
             startActivity(intent)
         }
 
-        activityMainBinding.mainrecyclerview.layoutManager = LinearLayoutManager(this)
+        activityMainBinding.mainrecyclerview.layoutManager = GridLayoutManager(this,2)
         activityMainBinding.horizontalrecycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true)
         getUserData()
