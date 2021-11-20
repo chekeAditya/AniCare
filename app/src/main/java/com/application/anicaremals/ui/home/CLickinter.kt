@@ -6,3 +6,9 @@ interface CLickinter {
 
     fun OnClick(responseModel: ResponseModel)
 }
+
+interface DeleteOnClick {
+    fun onDelete(responseModel: ResponseModel)
+
+    fun onEdit(responseModel: ResponseModel)
+}

@@ -15,11 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Anicaremals">
         <activity
+            android:name=".ui.home.ProfileActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.home.OnClickDetailActivity"
             android:exported="true" />
         <activity
             android:name=".ui.scanner.AddAnimalActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ui.scanner.AnimalDetailsActivity"
             android:exported="true" /> <!-- <activity -->
@@ -36,7 +39,7 @@
         </activity>
         <activity
             android:name=".ui.scanner.ScanAnimalActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
