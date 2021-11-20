@@ -47,7 +47,7 @@ class DummyFragment : Fragment(R.layout.fragment_dummy), CLickinter {
                     }
 
                     var adaptor = AnimalAdaptor( list, this@DummyFragment)
-                    var adaptor1 = HorizontalAdaptor(list)
+                    var adaptor1 = HorizontalAdaptor( list)
                     mainrecyclerview.adapter = adaptor
                     horizontalrecycler.adapter = adaptor1
                     adaptor.notifyDataSetChanged()

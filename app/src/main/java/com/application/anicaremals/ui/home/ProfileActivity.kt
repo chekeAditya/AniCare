@@ -70,13 +70,6 @@ class ProfileActivity : AppCompatActivity(), DeleteOnClick {
         val alert = builder.create()
         alert.show()
 
-        view.buttonupdate.setOnClickListener {
-            Toast.makeText(this, "working", Toast.LENGTH_SHORT).show()
-            responseModel.animal_category = view.AnimalCategory.toString()
-            responseModel.animal_details = view.Description.toString()
-
-        }
-
     }
 
 
