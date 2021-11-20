@@ -1,5 +1,6 @@
 package com.application.anicaremals.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import com.application.anicaremals.R
 import com.application.anicaremals.databinding.ActivityBaseBinding
 import com.application.anicaremals.remote.response.ResponseModel
 import com.application.anicaremals.ui.home.FirebaseLiveDataList
+import com.application.anicaremals.ui.scanner.ScanAnimalActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -31,6 +33,10 @@ class BaseActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.navHostFragment)
         activityBaseBinding.bottomNavigationView.setupWithNavController(navController)
+
+        activityBaseBinding.fbScanPlant.setOnClickListener {
+            startActivity(Intent(this,ScanAnimalActivity::class.java))
+        }
 
     }
 

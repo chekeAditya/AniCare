@@ -69,9 +69,16 @@ class ScanAnimalActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this), object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     val savedUri = Uri.fromFile(photoFile)
-                    val intent = Intent(baseContext,AnimalDetailsActivity::class.java)
-                    intent.putExtra("image",savedUri.toString())
-                    startActivity(intent)
+                    if (intent.getStringExtra("add") != null) {
+                        val intent = Intent(baseContext, AddAnimalActivity::class.java)
+                        intent.putExtra("image",savedUri.toString())
+                        startActivity(intent)
+                    }
+                    else{
+                        val intent = Intent(baseContext, AnimalDetailsActivity::class.java)
+                        intent.putExtra("image",savedUri.toString())
+                        startActivity(intent)
+                    }
                 }
 
                 override fun onError(exception: ImageCaptureException) {
