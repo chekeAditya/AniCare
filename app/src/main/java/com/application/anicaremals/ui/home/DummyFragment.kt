@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.application.anicaremals.R
 import com.application.anicaremals.remote.response.ResponseModel
 import com.application.anicaremals.ui.scanner.ScanAnimalActivity
@@ -30,6 +31,7 @@ class DummyFragment : Fragment(R.layout.fragment_dummy), CLickinter {
             var intent = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(intent)
         }
+
     }
 
     private fun getsuerData() {
@@ -51,6 +53,14 @@ class DummyFragment : Fragment(R.layout.fragment_dummy), CLickinter {
                     mainrecyclerview.adapter = adaptor
                     horizontalrecycler.adapter = adaptor1
                     adaptor.notifyDataSetChanged()
+
+                    adaptor.registerAdapterDataObserver(object: RecyclerView.AdapterDataObserver(){
+                        override fun onChanged() {
+                            super.onChanged()
+                            adaptor.notifyDataSetChanged()
+                        }
+                    })
+
                 }
             }
 
@@ -71,5 +81,7 @@ class DummyFragment : Fragment(R.layout.fragment_dummy), CLickinter {
         intent.putExtra("userNumber", responseModel.user_phoneNumber)
         intent.putExtra("image", responseModel.animal_image)
         startActivity(intent)
+
     }
+
 }
