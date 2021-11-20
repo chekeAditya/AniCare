@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.application.anicaremals.R
 import com.application.anicaremals.databinding.ActivityMainBinding
 import com.application.anicaremals.remote.response.ResponseModel
 import com.application.anicaremals.ui.scanner.ScanAnimalActivity
@@ -15,26 +17,34 @@ import com.google.firebase.database.DataSnapshot
 class MainActivity : AppCompatActivity(), CLickinter {
 
     private lateinit var activityMainBinding: ActivityMainBinding
-    private lateinit var list: ArrayList<ResponseModel>
+    private var list = mutableListOf<ResponseModel>()
     private lateinit var database: DatabaseReference
     var i = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_main)
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
+
+//        val fragmentTransaction = supportFragmentManager.beginTransaction()
+//        fragmentTransaction.add(R.id.LinearLyaout,DummyFragment(),"Dummy Fragement").commit()
 
         activityMainBinding.buttonToAdd.setOnClickListener {
             val intent: Intent = Intent(this, ScanAnimalActivity::class.java)
             startActivity(intent)
         }
 
-        list = arrayListOf<ResponseModel>()
         activityMainBinding.mainrecyclerview.layoutManager = LinearLayoutManager(this)
         activityMainBinding.horizontalrecycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true)
         getUserData()
+
+        activityMainBinding.profileSection.setOnClickListener {
+            var intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
@@ -44,17 +54,16 @@ class MainActivity : AppCompatActivity(), CLickinter {
 
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                list.clear()
                 if (snapshot.exists()) {
-
 
                     for (userSnapshot in snapshot.children) {
                         val user = userSnapshot.getValue(ResponseModel::class.java)
                         list.add(user!!)
-
                     }
 
-                    var adaptor = AnimalAdaptor(this@MainActivity, list, this@MainActivity)
-                    var adaptor1 = HorizontalAdaptor(this@MainActivity, list)
+                    var adaptor = AnimalAdaptor(list, this@MainActivity)
+                    var adaptor1 = HorizontalAdaptor(list)
                     activityMainBinding.mainrecyclerview.adapter = adaptor
                     activityMainBinding.horizontalrecycler.adapter = adaptor1
                     adaptor.notifyDataSetChanged()
@@ -71,7 +80,6 @@ class MainActivity : AppCompatActivity(), CLickinter {
     }
 
     override fun OnClick(responseModel: ResponseModel) {
-        i++;
         var intent = Intent(this, OnClickDetailActivity::class.java)
         intent.putExtra("username", responseModel.user_name)
         intent.putExtra("animalbread", responseModel.animal_category)

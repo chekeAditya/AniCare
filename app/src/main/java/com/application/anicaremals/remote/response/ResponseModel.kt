@@ -5,8 +5,8 @@ class ResponseModel(
     val user_phoneNumber: String? = " ",
     val user_address: String? = " ",
     val animal_image: String? = " ",
-    val animal_details: String? = " ",
-    val animal_category: String? = " ",
+    var animal_details: String? = " ",
+    var animal_category: String? = " ",
 ) {
 
 
