@@ -50,11 +50,6 @@ class AddAnimalActivity : AppCompatActivity() {
 //                val fragmentTransaction = supportFragmentManager.beginTransaction()
 //                fragmentTransaction.replace(R.id.FragmentContanier12, DummyFragment(), "DummyFragment").commit()
 
-                val intent = Intent(this,BaseActivity::class.java)
-                CoroutineScope(Dispatchers.Main).launch {
-                    delay(3000)
-                    startActivity(intent)
-                }
             } else {
                 Toast.makeText(this, "Please fill the Credentials", Toast.LENGTH_SHORT).show()
             }
@@ -96,6 +91,12 @@ class AddAnimalActivity : AppCompatActivity() {
             animal_category)
 
         firebaseReference.child("posts").child(user_name).setValue(responseModel)
+
+        val intent = Intent(this,BaseActivity::class.java)
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(3000)
+            startActivity(intent)
+        }
 
     }
 }
