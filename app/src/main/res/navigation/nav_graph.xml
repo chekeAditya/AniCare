@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/dummyFragment">
+
+    <fragment
+        android:id="@+id/premiumBaseFragment"
+        android:name="com.application.anicaremals.ui.premium.PremiumBaseFragment"
+        android:label="fragment_premium_base"
+        tools:layout="@layout/fragment_premium_base" />
+    <fragment
+        android:id="@+id/dummyFragment"
+        android:name="com.application.anicaremals.ui.home.DummyFragment"
+        android:label="DummyFragment" />
+</navigation>

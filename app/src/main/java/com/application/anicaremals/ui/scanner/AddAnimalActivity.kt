@@ -1,12 +1,16 @@
 package com.application.anicaremals.ui.scanner
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.core.net.toUri
 import com.application.anicaremals.R
 import com.application.anicaremals.remote.response.ResponseModel
+import com.application.anicaremals.ui.home.DummyFragment
+import com.application.anicaremals.ui.home.MainActivity
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -35,7 +39,20 @@ class AddAnimalActivity : AppCompatActivity() {
         ivAnimalAdd.setImageURI(image?.toUri())
 
         fbAddAnimalConfirm.setOnClickListener {
-            uploadImage(image?.toUri())
+            if (etAddAnimalCategory.text.length != 0 && etAddAnimalDetails.text.length != 0 &&
+                etAddUserName.text.length != 0 && etAddPhoneNo.text.length != 0 &&
+                etAddAddress.text.length != 0
+            ) {
+                uploadImage(image?.toUri())
+//                val fragmentTransaction = supportFragmentManager.beginTransaction()
+//                fragmentTransaction.replace(R.id.FragmentContanier12, DummyFragment(), "DummyFragment").commit()
+
+                val intent = Intent(this,MainActivity::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Please fill the Credentials", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
     }
@@ -43,16 +60,16 @@ class AddAnimalActivity : AppCompatActivity() {
     private fun uploadImage(image: Uri?) {
         val fileRef = firebaseStorageReference.child("posts_images")
             .child(System.currentTimeMillis().toString() + ".jpg")
-            fileRef.putFile(image!!).continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>>{
-                if (!it.isSuccessful()) {
-                    Log.d("problem", it.exception.toString());
-                }
-                return@Continuation fileRef.downloadUrl
-            }).addOnCompleteListener { task ->
-                if (task.isSuccessful){
-                    updateDatabase(task.result)
-                }
+        fileRef.putFile(image!!).continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> {
+            if (!it.isSuccessful()) {
+                Log.d("problem", it.exception.toString());
             }
+            return@Continuation fileRef.downloadUrl
+        }).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                updateDatabase(task.result)
+            }
+        }
     }
 
     private fun updateDatabase(it: Uri) {
