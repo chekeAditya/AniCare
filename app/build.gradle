@@ -51,11 +51,13 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.0.0')
     implementation 'com.google.firebase:firebase-storage-ktx'
 
-    //firebase ml
+    //firebase ml image labeling
     implementation 'com.google.firebase:firebase-core:20.0.0'
-//    implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
     implementation 'com.google.firebase:firebase-ml-vision-image-label-model:20.0.2'
     implementation 'com.google.mlkit:image-labeling:17.0.5'
+
+    //firebase ml object detection
+    implementation 'com.google.mlkit:object-detection:16.2.7'
 
     //camerax
     def camerax_version = "1.0.2"
