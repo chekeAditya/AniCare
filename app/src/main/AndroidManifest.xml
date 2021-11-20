@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Anicaremals">
         <activity
-            android:name=".ui.BaseActivity"
+            android:name=".ui.home.MainActivity"
             android:exported="true" >
 
             <intent-filter>
@@ -41,7 +41,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".ui.home.MainActivity"
+            android:name=".ui.BaseActivity"
             android:exported="false"/>
         <activity
             android:name=".ui.scanner.ScanAnimalActivity"

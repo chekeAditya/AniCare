@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -133,38 +134,63 @@ class ProfileAnimalAdaptor(
         }
 
         holder.profileAnimalItemLayoutBinding.editoption.setOnClickListener {
-//            val mCtx = context
-//            val builder = AlertDialog.Builder(mCtx)
-//            builder.setTitle("Update Information")
-//            val inflater = LayoutInflater.from(mCtx)
-//            val view = inflater.inflate(R.layout.animal_update, null)
-//
-//            holder.profileAnimalItemLayoutBinding.tvAnimalDetials.setText(animalprofile.animal_details)
-//
-//            builder.setView(view)
-//
-//            val firstname = view.findViewById<EditText>(R.id.AnimalCategory)
-//            val lastname = view.findViewById<EditText>(R.id.Description)
-//            builder.setPositiveButton("update", object : DialogInterface.OnClickListener {
-//                override fun onClick(p0: DialogInterface?, p1: Int) {
-//                    holder.profileAnimalItemLayoutBinding.tvAnimalDetials.text = lastname.text.toString()
-//                    holder.profileAnimalItemLayoutBinding.tvAnimalCategory.text =
-//                        firstname.text.toString()
-//
-//                    val update =
-//                        ResponseModel(holder.profileAnimalItemLayoutBinding.tvAnimalDetials.toString())
-//                    val myDatabase = FirebaseDatabase.getInstance().getReference("posts")
-//                    myDatabase.child(animalprofile.user_name.toString()).setValue(update)
-//
-//                }
-//
-//            })
-//
-//            val alert = builder.create()
-//            alert.show()
+            val mCtx = context
+            val builder = AlertDialog.Builder(mCtx)
+            builder.setTitle("Update Information")
+            val inflater = LayoutInflater.from(mCtx)
+            val view = inflater.inflate(R.layout.animal_update, null)
+
+            holder.profileAnimalItemLayoutBinding.tvAnimalDetials.setText(animalprofile.animal_details)
+
+            builder.setView(view)
+
+            val animalCategory = view.findViewById<EditText>(R.id.AnimalCategory)
+            val animalDescription = view.findViewById<EditText>(R.id.Description)
+            val animalUserName = view.findViewById<TextView>(R.id.UserName)
+            val animalNumber = view.findViewById<EditText>(R.id.Number)
+            val contactAddress = view.findViewById<EditText>(R.id.ContactAddress)
+            val animalImage = view.findViewById<TextView>(R.id.ImageAddress)
+
+            animalCategory.setText(animalprofile.animal_category)
+            animalDescription.setText(animalprofile.animal_details)
+            animalUserName.setText(animalprofile.user_name)
+            animalNumber.setText(animalprofile.user_phoneNumber)
+            contactAddress.setText(animalprofile.user_address)
+            animalImage.setText(animalprofile.animal_image)
+
+            builder.setPositiveButton("update", object : DialogInterface.OnClickListener {
+                override fun onClick(p0: DialogInterface?, p1: Int) {
 
 
-            listener.onEdit(animalprofile)
+                    var detials =
+                        animalCategory.text.toString()
+                    var category =
+                        animalDescription.text.toString()
+                    var phonenumber =
+                        animalNumber.text.toString()
+
+                    val address =
+                        contactAddress.text.toString()
+
+                    val update =
+                        ResponseModel(animalUserName.text.toString(),
+                            phonenumber,
+                            address,
+                            animalImage.text.toString(),
+                            detials,
+                            category)
+                    val myDatabase = FirebaseDatabase.getInstance().getReference("posts")
+                    myDatabase.child(update.user_name.toString()).setValue(update)
+
+                }
+
+            })
+
+            val alert = builder.create()
+            alert.show()
+
+
+//            listener.onEdit(animalprofile)
         }
     }
 
