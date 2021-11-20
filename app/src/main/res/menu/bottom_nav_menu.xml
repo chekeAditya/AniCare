@@ -9,7 +9,7 @@
     <item android:title=""/>
 
 
-    <item android:id="@+id/profileFragment"
+    <item android:id="@+id/premiumBaseFragment"
         android:title=""
         android:icon="@drawable/ic_profile"/>
 
