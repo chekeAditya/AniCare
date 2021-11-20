@@ -50,6 +50,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAnimalDetailsHead"/>
 
+    <TextView
+        android:id="@+id/tvQuote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Animals are such agreeable friends—they ask no questions they pass no criticisms."
+        android:layout_margin="30dp"
+        app:layout_constraintStart_toStartOf="@id/cvAnimalDetails"
+        app:layout_constraintEnd_toEndOf="@id/cvAnimalDetails"
+        app:layout_constraintTop_toBottomOf="@+id/tvLabel"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbAddAnimalDetails"
         android:layout_width="wrap_content"
