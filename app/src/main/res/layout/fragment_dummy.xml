@@ -56,7 +56,7 @@
                     android:layout_marginBottom="5dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/horizontalrecycler"
+                        android:id="@+id/homeHorizontalRecycler"
                         android:layout_width="wrap_content"
                         android:layout_height="100dp" />
                 </HorizontalScrollView>
@@ -68,7 +68,7 @@
                     android:background="@color/black" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/mainrecyclerview"
+                    android:id="@+id/homeMainRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@id/scrpllview" />

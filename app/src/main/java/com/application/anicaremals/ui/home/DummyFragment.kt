@@ -1,26 +1,40 @@
 package com.application.anicaremals.ui.home
 
 import android.content.Intent
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.application.anicaremals.R
+import com.application.anicaremals.databinding.FragmentDummyBinding
 import com.application.anicaremals.remote.response.ResponseModel
 import com.application.anicaremals.ui.scanner.ScanAnimalActivity
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_dummy.*
 
-class DummyFragment : Fragment(R.layout.fragment_dummy), CLickinter {
-    private val database = FirebaseDatabase.getInstance().getReference("posts")
+class DummyFragment : Fragment(), CLickinter {
+
+    private lateinit var dummyBinding: FragmentDummyBinding
+
     private var list = mutableListOf<ResponseModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        getUserData()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        dummyBinding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_dummy,
+            container,
+            false)
+        return dummyBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,7 +45,9 @@ class DummyFragment : Fragment(R.layout.fragment_dummy), CLickinter {
             intent.putExtra("add","add")
             startActivity(intent)
         }
-        setRecyclerView()
+
+            setRecyclerView()
+
         profileSection.setOnClickListener {
             var intent = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(intent)
@@ -40,33 +56,16 @@ class DummyFragment : Fragment(R.layout.fragment_dummy), CLickinter {
     }
 
     private fun setRecyclerView() {
-        var adaptor = AnimalAdaptor( list, this@DummyFragment)
-        var adaptor1 = HorizontalAdaptor( list)
-        mainrecyclerview.adapter = adaptor
-        horizontalrecycler.adapter = adaptor1
-        adaptor.notifyDataSetChanged()
-
-        adaptor.registerAdapterDataObserver(object: RecyclerView.AdapterDataObserver(){
-            override fun onChanged() {
-                super.onChanged()
-                adaptor.notifyDataSetChanged()
-            }
-        })
-    }
-
-    private fun getUserData() {
-        database.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (userSnapshot in snapshot.children) {
-                        val user = userSnapshot.getValue(ResponseModel::class.java)
-                        list.add(user!!)
-                    }
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
-                Log.d("sudrshan", "Error")
-            }
+        FirebaseLiveDataList.livedata.observe(viewLifecycleOwner, Observer {
+            list.clear()
+            list.addAll(it)
+            var adaptor = AnimalAdaptor( list, this@DummyFragment)
+            var adaptor1 = HorizontalAdaptor( list)
+            dummyBinding.homeMainRecyclerView.adapter = adaptor
+            dummyBinding.homeMainRecyclerView.layoutManager = LinearLayoutManager(context)
+            dummyBinding.homeHorizontalRecycler.adapter = adaptor1
+            dummyBinding.homeHorizontalRecycler.layoutManager = LinearLayoutManager(context,
+            LinearLayoutManager.HORIZONTAL,false)
         })
     }
 
