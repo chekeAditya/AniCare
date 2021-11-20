@@ -8,12 +8,37 @@
         android:layout_height="match_parent"
         tools:context=".ui.BaseActivity">
 
+        <Toolbar
+            android:id="@+id/tbTop"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/teal_700"
+            android:layout_alignParentTop="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AniCare"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:fontFamily="@font/poppins"/>
+
+            <ImageView
+                android:id="@+id/ivFilterAnimal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_filter_animal"/>
+
+        </Toolbar>
+
         <fragment
             android:id="@+id/navHostFragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/cvBottom"
+            android:layout_below="@+id/tbTop"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
             app:defaultNavHost="true"

@@ -11,6 +11,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <ImageView
+        android:id="@+id/ivScanArea"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_scan_area"
+        android:layout_margin="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifScanBar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:src="@drawable/scan_bar"
+        app:layout_constraintTop_toTopOf="@+id/ivScanArea"
+        app:layout_constraintBottom_toBottomOf="@+id/ivScanArea"
+        app:layout_constraintStart_toStartOf="@+id/ivScanArea"
+        app:layout_constraintEnd_toEndOf="@+id/ivScanArea"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbScanAnimal"
         android:layout_width="wrap_content"

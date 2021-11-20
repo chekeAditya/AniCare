@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -15,6 +16,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.application.anicaremals.R
 import kotlinx.android.synthetic.main.activity_scan_animal.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -55,6 +60,7 @@ class ScanAnimalActivity : AppCompatActivity() {
     }
 
     private fun takePicture() {
+        gifScanBar.visibility = View.VISIBLE
         val imageCapture = imageCapture ?: return
 
         val photoFile = File(
@@ -77,7 +83,10 @@ class ScanAnimalActivity : AppCompatActivity() {
                     else{
                         val intent = Intent(baseContext, AnimalDetailsActivity::class.java)
                         intent.putExtra("image",savedUri.toString())
-                        startActivity(intent)
+                        CoroutineScope(Dispatchers.Main).launch {
+                            delay(4000)
+                            startActivity(intent)
+                        }
                     }
                 }
 

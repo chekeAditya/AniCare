@@ -12,3 +12,7 @@ interface DeleteOnClick {
 
     fun onEdit(responseModel: ResponseModel)
 }
+
+interface Filter{
+    fun onFilter(list: List<ResponseModel>)
+}
