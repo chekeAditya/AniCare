@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity(), CLickinter {
 
         list = arrayListOf<ResponseModel>()
         activityMainBinding.mainrecyclerview.layoutManager = LinearLayoutManager(this)
+        activityMainBinding.horizontalrecycler.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true)
         getUserData()
 
     }
@@ -52,7 +54,9 @@ class MainActivity : AppCompatActivity(), CLickinter {
                     }
 
                     var adaptor = AnimalAdaptor(this@MainActivity, list, this@MainActivity)
+                    var adaptor1 = HorizontalAdaptor(this@MainActivity, list)
                     activityMainBinding.mainrecyclerview.adapter = adaptor
+                    activityMainBinding.horizontalrecycler.adapter = adaptor1
                     adaptor.notifyDataSetChanged()
                 }
             }
@@ -74,7 +78,7 @@ class MainActivity : AppCompatActivity(), CLickinter {
         intent.putExtra("animaldetials", responseModel.animal_details)
         intent.putExtra("userlocation", responseModel.user_address)
         intent.putExtra("userNumber", responseModel.user_phoneNumber)
-        intent.putExtra("image",responseModel.animal_image)
+        intent.putExtra("image", responseModel.animal_image)
         startActivity(intent)
     }
 }

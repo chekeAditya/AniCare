@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_margin="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Animals need to be Cure " />
         </RelativeLayout>
 
@@ -36,13 +36,22 @@
                 android:id="@+id/scrpllview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp">
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageTop"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/horizontalrecycler"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp" />
             </HorizontalScrollView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@id/scrpllview"
+                android:background="@color/black" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mainrecyclerview"
