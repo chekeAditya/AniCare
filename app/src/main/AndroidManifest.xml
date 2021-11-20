@@ -4,8 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-feature android:name="android.hardware.camera.any" />
+    <uses-permission android:name="android.permission.READ_SMS" />
 
     <application
         android:allowBackup="true"
@@ -15,38 +15,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Anicaremals">
         <activity
-            android:name=".ui.home.OnClickDetailActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.scanner.AddAnimalActivity"
-            android:exported="true"></activity>
-        <activity
-            android:name=".ui.scanner.AnimalDetailsActivity"
-            android:exported="true" /> <!-- <activity -->
-        <!-- android:name=".ui.home.AnimalAddActivity" -->
-        <!-- android:exported="true" /> -->
-        android:theme="@style/Theme.Anicaremals" >
-        <activity
-            android:name=".ui.premium.ContentProviderMessageActivity"
+            android:name=".ui.BaseActivity"
             android:exported="true" >
 
-        </activity>
-        <activity
-            android:name=".ui.premium.ContentProviderPhone_Activity"
-            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <activity
+            android:name=".ui.home.OnClickDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.scanner.AddAnimalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.scanner.AnimalDetailsActivity"
+            android:exported="false" />
+
         <activity
             android:name=".ui.home.MainActivity"
-            android:exported="false" >
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".ui.scanner.ScanAnimalActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

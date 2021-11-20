@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Anicaremals</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="desc">Recirculating tank washing water. Washing large cargo tanks (greater that 10,000 cubic meters).</string>
 </resources>
