@@ -3,19 +3,21 @@ package com.application.anicaremals.ui.home
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.application.anicaremals.databinding.ActivityMainBinding
 import com.application.anicaremals.remote.response.ResponseModel
+import com.application.anicaremals.ui.scanner.ScanAnimalActivity
 import com.google.firebase.database.*
 import com.google.firebase.database.DataSnapshot
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CLickinter {
 
     private lateinit var activityMainBinding: ActivityMainBinding
     private lateinit var list: ArrayList<ResponseModel>
     private lateinit var database: DatabaseReference
-
+    var i = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
 
         activityMainBinding.buttonToAdd.setOnClickListener {
-            val intent: Intent = Intent(this, AnimalAddActivity::class.java)
+            val intent: Intent = Intent(this, ScanAnimalActivity::class.java)
             startActivity(intent)
         }
 
@@ -36,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getUserData() {
 
-        database = FirebaseDatabase.getInstance().getReference("ResponseModel")
+        database = FirebaseDatabase.getInstance().getReference("posts")
 
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -49,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
                     }
 
-                    var adaptor = AnimalAdaptor(this@MainActivity, list)
+                    var adaptor = AnimalAdaptor(this@MainActivity, list, this@MainActivity)
                     activityMainBinding.mainrecyclerview.adapter = adaptor
                     adaptor.notifyDataSetChanged()
                 }
@@ -57,10 +59,22 @@ class MainActivity : AppCompatActivity() {
 
             override fun onCancelled(error: DatabaseError) {
 
-//                Toast.makeText(this@MainActivity, error, Toast.LENGTH_SHORT).show()
+                Log.d("sudrshan", "Error")
             }
 
         })
 
+    }
+
+    override fun OnClick(responseModel: ResponseModel) {
+        i++;
+        var intent = Intent(this, OnClickDetailActivity::class.java)
+        intent.putExtra("username", responseModel.user_name)
+        intent.putExtra("animalbread", responseModel.animal_category)
+        intent.putExtra("animaldetials", responseModel.animal_details)
+        intent.putExtra("userlocation", responseModel.user_address)
+        intent.putExtra("userNumber", responseModel.user_phoneNumber)
+        intent.putExtra("image",responseModel.animal_image)
+        startActivity(intent)
     }
 }
