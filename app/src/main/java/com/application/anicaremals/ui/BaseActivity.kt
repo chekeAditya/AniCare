@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.application.anicaremals.R
 import com.application.anicaremals.databinding.ActivityBaseBinding
 import com.application.anicaremals.remote.response.ResponseModel
+import com.application.anicaremals.ui.home.FilterBottomSheet
 import com.application.anicaremals.ui.home.FirebaseLiveDataList
 import com.application.anicaremals.ui.scanner.ScanAnimalActivity
 import com.google.firebase.database.DataSnapshot
