@@ -15,18 +15,23 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_dummy.*
 
 class DummyFragment : Fragment(R.layout.fragment_dummy), CLickinter {
-    private lateinit var database: DatabaseReference
-    private lateinit var list: ArrayList<ResponseModel>
+    private val database = FirebaseDatabase.getInstance().getReference("posts")
+    private var list = mutableListOf<ResponseModel>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        getUserData()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        list = arrayListOf<ResponseModel>()
         buttonToAdd.setOnClickListener {
             val intent: Intent = Intent(requireContext(), ScanAnimalActivity::class.java)
+            intent.putExtra("add","add")
             startActivity(intent)
         }
-        getsuerData()
+        setRecyclerView()
         profileSection.setOnClickListener {
             var intent = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(intent)
@@ -34,41 +39,34 @@ class DummyFragment : Fragment(R.layout.fragment_dummy), CLickinter {
 
     }
 
-    private fun getsuerData() {
-        database = FirebaseDatabase.getInstance().getReference("posts")
+    private fun setRecyclerView() {
+        var adaptor = AnimalAdaptor( list, this@DummyFragment)
+        var adaptor1 = HorizontalAdaptor( list)
+        mainrecyclerview.adapter = adaptor
+        horizontalrecycler.adapter = adaptor1
+        adaptor.notifyDataSetChanged()
 
+        adaptor.registerAdapterDataObserver(object: RecyclerView.AdapterDataObserver(){
+            override fun onChanged() {
+                super.onChanged()
+                adaptor.notifyDataSetChanged()
+            }
+        })
+    }
+
+    private fun getUserData() {
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-
-
                     for (userSnapshot in snapshot.children) {
                         val user = userSnapshot.getValue(ResponseModel::class.java)
                         list.add(user!!)
-
                     }
-
-                    var adaptor = AnimalAdaptor( list, this@DummyFragment)
-                    var adaptor1 = HorizontalAdaptor( list)
-                    mainrecyclerview.adapter = adaptor
-                    horizontalrecycler.adapter = adaptor1
-                    adaptor.notifyDataSetChanged()
-
-                    adaptor.registerAdapterDataObserver(object: RecyclerView.AdapterDataObserver(){
-                        override fun onChanged() {
-                            super.onChanged()
-                            adaptor.notifyDataSetChanged()
-                        }
-                    })
-
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
-
                 Log.d("sudrshan", "Error")
             }
-
         })
     }
 

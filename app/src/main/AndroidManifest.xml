@@ -15,17 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Anicaremals">
-        <activity
-            android:name=".ui.home.MainActivity"
-            android:exported="true" >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+<!--        <activity-->
+<!--            android:name=".ui.home.MainActivity"-->
+<!--            android:exported="true" >-->
+<!--        </activity>-->
 
         <activity
             android:name=".ui.home.ProfileActivity"
@@ -42,7 +35,13 @@
 
         <activity
             android:name=".ui.BaseActivity"
-            android:exported="false"/>
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.scanner.ScanAnimalActivity"
             android:exported="true" />
