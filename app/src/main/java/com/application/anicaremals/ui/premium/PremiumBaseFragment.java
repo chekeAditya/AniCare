@@ -97,12 +97,14 @@ public class PremiumBaseFragment extends Fragment {
             int i = 0;
             while (cursor.moveToNext()) {
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.ADDRESS));
-                if (name.contains("57575791")) {
-                    String details = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.BODY));
-                    String number = details.substring(details.length() - 4);
-                    pieEntries.add(new PieEntry(cursor.getCount(), number));
-                    barEntries.add(new BarEntry(i, Float.parseFloat(number)));
-                    i++;
+                if(name != null) {
+                    if (name.contains("57575791")) {
+                        String details = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.BODY));
+                        String number = details.substring(details.length() - 4);
+                        pieEntries.add(new PieEntry(cursor.getCount(), number));
+                        barEntries.add(new BarEntry(i, Float.parseFloat(number)));
+                        i++;
+                    }
                 }
             }
         }
