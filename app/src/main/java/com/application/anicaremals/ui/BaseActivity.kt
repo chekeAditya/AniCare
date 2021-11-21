@@ -1,8 +1,12 @@
 package com.application.anicaremals.ui
 
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
@@ -16,6 +20,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.animal_item_layout.*
+import java.time.LocalDate
 
 class BaseActivity : AppCompatActivity() {
 
@@ -23,6 +29,7 @@ class BaseActivity : AppCompatActivity() {
 
     private val database = FirebaseDatabase.getInstance().getReference("posts")
     private var list = mutableListOf<ResponseModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +44,8 @@ class BaseActivity : AppCompatActivity() {
         activityBaseBinding.fbScanPlant.setOnClickListener {
             startActivity(Intent(this,ScanAnimalActivity::class.java))
         }
+
+
 
     }
 
