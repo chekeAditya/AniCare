@@ -4,20 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".ui.home.ProfileActivity">
+
 
     <ImageView
         android:id="@+id/image12"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="250dp"
+        android:background="@color/isSelected"
         android:scaleType="fitXY"
-        android:src="@drawable/backgroundgreen" />
+        android:src="@drawable/ddddooooogggg" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:id="@+id/profileimage"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="220dp"
         android:src="@drawable/aditya" />
 
     <TextView
@@ -27,33 +31,34 @@
         android:layout_below="@id/image12"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:text="User Name : Aditya Cheke" />
+        android:fontFamily="@font/poppins"
+        android:text="User: Aditya Cheke" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/image12"
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="60dp"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        android:text="Contact No : 978456123" />
+        android:src="@drawable/ic_baseline_phone_in_talk_24"
+        android:textColor="@color/isNotSelected" />
 
     <TextView
         android:id="@+id/profilelocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/profileName"
+        android:layout_below="@id/image12"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
+
+        android:layout_marginTop="17dp"
+        android:layout_toRightOf="@id/profileimage"
         android:text="Location : Maharashtra" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/profilerecyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/profilerecyclerview"
-        android:layout_below="@id/profilelocation"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_below="@id/profileimage"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background_topandright_close" />
 </RelativeLayout>
