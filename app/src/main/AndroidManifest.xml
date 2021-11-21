@@ -18,6 +18,7 @@
         android:theme="@style/Theme.Anicaremals">
         <activity
             android:name=".ui.BaseActivity"
+            android:launchMode="singleTask"
             android:exported="true" >
 
             <intent-filter>

@@ -12,18 +12,9 @@
 
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:id="@+id/tvAnimalDetailsHeading"
-            style="@style/TextViewHeading"
-            android:layout_marginStart="20dp"
-            android:text="Animal Details"
-            android:textSize="18sp" />
-
-        <TextView
             android:layout_marginTop="15dp"
             android:id="@+id/tvPieChartHeading"
             style="@style/TextViewHeading"
-            android:layout_below="@+id/tvAnimalDetailsHeading"
             android:layout_marginStart="20dp"
             android:text="Pie Chart"
             android:textSize="18sp" />
@@ -79,10 +70,10 @@
         <LinearLayout
             android:id="@+id/llLayout"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvAPrecautionsHeading"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_height="200dp"
-            android:layout_below="@+id/tvAPrecautionsHeading">
+            android:layout_marginEnd="10dp">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -115,7 +106,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:fontFamily="@font/poppins"
-                        android:text="@string/desc"
+                        android:text="* Do not rewarm the animal too quickly.\n* Don't attempt to warm the arms and legs. Heating or massaging the limbs of someone in this condition can stress the heart and lungs.\n* protect the animal from the wind, especially around the neck and head. I"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -147,13 +138,14 @@
 
                     <TextView
                         android:id="@+id/tvHighLevel"
+                        android:layout_marginBottom="10dp"
                         style="@style/TextViewNormal"
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:fontFamily="@font/poppins"
-                        android:text="@string/desc"
+                        android:text="* Move your pet into the shade or an air-conditioned area.\n* Apply ice packs or cold towels to their head, neck and chest or run cool (not cold) water over them.\n* Let them drink small amounts of cool water or lick ice cubes. Take them directly to a veterinarian."
                         android:textSize="12sp" />
 
                 </LinearLayout>

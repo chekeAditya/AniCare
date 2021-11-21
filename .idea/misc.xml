@@ -3,35 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/drawable-v24/bottom_nav_item_bg_selector.xml" value="0.403125" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/drawable-v24/bottom_nav_selector.xml" value="0.403125" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/drawable-v24/ic_home.xml" value="0.403125" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/drawable-v24/ic_profile.xml" value="0.403125" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/drawable-v24/ic_scan_bottom_nav.xml" value="0.403125" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/drawable/rectangular_bg_apply_circular.xml" value="0.403125" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/activity_add_animal.xml" value="0.38697916666666665" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/activity_animal_details.xml" value="0.38697916666666665" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/activity_base.xml" value="0.33" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/activity_content_provider.xml" value="0.1350210970464135" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/activity_content_provider_message.xml" value="0.21875" />
         <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/activity_main.xml" value="0.38697916666666665" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/drawable/background_topandright_close.xml" value="0.26614583333333336" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.26614583333333336" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.26614583333333336" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.26614583333333336" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/drawable/rectangleshapre.xml" value="0.23055555555555557" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/activity_add_animal.xml" value="0.25" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/activity_animal_add.xml" value="0.1793478260869565" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/activity_animal_details.xml" value="0.25" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/activity_base.xml" value="0.25" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/activity_main2.xml" value="0.1793478260869565" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/activity_on_click_detail.xml" value="0.264" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/activity_profile.xml" value="0.2463768115942029" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/animal_add_layout.xml" value="0.1793478260869565" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/animal_item_layout.xml" value="0.264" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/animal_update.xml" value="0.264" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/fragment_dummy.xml" value="0.2463768115942029" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/fragment_premium_base.xml" value="0.25" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/item_horizontalscroolview_layout.xml" value="0.25" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/item_layout.xml" value="0.25" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/profile_animal_item_layout.xml" value="0.2463768115942029" />
-        <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/menu/menu_item.xml" value="0.1" />
         <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/activity_on_click_detail.xml" value="0.38697916666666665" />
         <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/activity_profile.xml" value="0.38697916666666665" />
-        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/animal_item_layout.xml" value="0.22447916666666667" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/activity_scan_animal.xml" value="0.38697916666666665" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/animal_item_layout.xml" value="0.5" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/animal_update.xml" value="0.38697916666666665" />
         <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/fragment_dummy.xml" value="0.38697916666666665" />
-        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/fragment_premium_base.xml" value="0.22" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/fragment_filter_bottom_sheet.xml" value="0.38697916666666665" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/fragment_premium_base.xml" value="0.33" />
         <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/fragment_premium_base_1.xml" value="0.38697916666666665" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/item_horizontalscroolview_layout.xml" value="0.38697916666666665" />
         <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/item_layout.xml" value="0.21875" />
         <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/profile_animal_item_layout.xml" value="0.38697916666666665" />
         <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/menu/bottom_nav_menu.xml" value="0.38697916666666665" />

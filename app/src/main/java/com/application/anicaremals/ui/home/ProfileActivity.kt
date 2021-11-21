@@ -13,14 +13,12 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.application.anicaremals.R
-import com.application.anicaremals.databinding.ActivityMainBinding
 import com.application.anicaremals.remote.response.ResponseModel
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.animal_update.view.*
 
 class ProfileActivity : AppCompatActivity(), DeleteOnClick {
-    private lateinit var activityMainBinding: ActivityMainBinding
     private var list = mutableListOf<ResponseModel>()
     private lateinit var database: DatabaseReference
     private lateinit var adaptor: ProfileAnimalAdaptor
@@ -29,18 +27,15 @@ class ProfileActivity : AppCompatActivity(), DeleteOnClick {
 
 
     override
-
     fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
         profilerecyclerview.layoutManager = LinearLayoutManager(this)
         getUserData()
-
-        createNodtificationChannel()
     }
 
-    private fun createNodtificationChannel() {
+    fun createNodtificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Notification Tittle"
             val descriptionText = "Notification Description"
@@ -56,11 +51,11 @@ class ProfileActivity : AppCompatActivity(), DeleteOnClick {
         }
     }
 
-    private fun sendNotification() {
+    fun sendNotification() {
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle("The List Is as Expected more than 2 and it is ${list.size}")
-            .setContentText("The List is More ")
+            .setContentTitle("Temperature High Cow")
+            .setContentText("Temperaure of the cow goes above average temperature check precautions else contact expert")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         with(NotificationManagerCompat.from(this)) {

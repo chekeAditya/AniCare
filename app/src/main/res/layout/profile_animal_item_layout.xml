@@ -24,6 +24,8 @@
 
 
             <TextView
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/black"
                 android:id="@+id/tvAnimalDetials"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -34,6 +36,8 @@
                 android:text="Hey the Animals Deatils are as follow " />
 
             <TextView
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/black"
                 android:id="@+id/tvv1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,6 +48,8 @@
 
 
             <TextView
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/black"
                 android:id="@+id/tvv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,6 +60,8 @@
                 android:text="Animal Category : " />
 
             <TextView
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/black"
                 android:id="@+id/tvAnimalCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

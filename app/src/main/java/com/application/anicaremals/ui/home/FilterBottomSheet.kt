@@ -1,13 +1,14 @@
 package com.application.anicaremals.ui.home
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.application.anicaremals.R
 import com.application.anicaremals.remote.response.ResponseModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_filter_bottom_sheet.*
 
@@ -21,7 +22,7 @@ class FilterBottomSheet(private val click: Filter) :
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_filter_bottom_sheet,container,false)
+        return inflater.inflate(R.layout.fragment_filter_bottom_sheet, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,10 +39,16 @@ class FilterBottomSheet(private val click: Filter) :
 
     }
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return BottomSheetDialog(requireContext(), R.style.MyTransparentBottomSheetDialogTheme);
+
+    }
+
     private fun generateFilterList() {
         var newList = mutableListOf<ResponseModel>()
         if (cbDog.isChecked || cbGoat.isChecked ||
-            cbHorse.isChecked || cbCat.isChecked || cbCow.isChecked) {
+            cbHorse.isChecked || cbCat.isChecked || cbCow.isChecked
+        ) {
             var dog = ""
             var cat = ""
             var goat = ""
@@ -52,13 +59,13 @@ class FilterBottomSheet(private val click: Filter) :
             if (cbCat.isChecked) cat = "Cat"
             if (cbHorse.isChecked) horse = "Horse"
             if (cbGoat.isChecked) goat = "Goat"
-            for (i in originalList){
+            for (i in originalList) {
                 var cg = i.animal_category
                 if (cg.equals(dog) || cg.equals(cat) || cg.equals(horse)
-                    || cg.equals(goat) || cg.equals(cow)) newList.add(i)
+                    || cg.equals(goat) || cg.equals(cow)
+                ) newList.add(i)
             }
-        }
-        else newList.addAll(originalList)
+        } else newList.addAll(originalList)
         click.onFilter(newList)
     }
 
