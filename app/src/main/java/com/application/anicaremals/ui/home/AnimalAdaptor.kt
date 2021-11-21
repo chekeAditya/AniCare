@@ -60,6 +60,7 @@ class AnimalHolder(
 
         itemLayoutBinding.tvAnimalCategory.text = responseModel.animal_category.toString()
         itemLayoutBinding.tvAnimalDetials.text = responseModel.animal_details.toString()
+        itemLayoutBinding.count.text = responseModel.user_address.toString()
         Glide.with(itemLayoutBinding.ivImageDisplay).load(responseModel.animal_image)
             .into(itemLayoutBinding.ivImageDisplay)
     }
@@ -93,7 +94,6 @@ class HorizontalHolder(val itemHorizontalscroolviewLayoutBinding: ItemHorizontal
 
 
     fun setData(responseModel: ResponseModel) {
-        itemHorizontalscroolviewLayoutBinding.tvhzname.text = responseModel.animal_category
         Glide.with(itemHorizontalscroolviewLayoutBinding.cihzview).load(responseModel.animal_image)
             .into(
                 itemHorizontalscroolviewLayoutBinding.cihzview

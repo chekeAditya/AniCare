@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.application.anicaremals.R
@@ -19,11 +20,13 @@ import com.application.anicaremals.ui.scanner.ScanAnimalActivity
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_dummy.*
 
-class DummyFragment : Fragment(), CLickinter {
+class DummyFragment : Fragment(), CLickinter, Filter {
 
     private lateinit var dummyBinding: FragmentDummyBinding
 
     private var list = mutableListOf<ResponseModel>()
+
+    private lateinit var bottomSheet: FilterBottomSheet
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,6 +56,11 @@ class DummyFragment : Fragment(), CLickinter {
             startActivity(intent)
         }
 
+        dummyBinding.ivFilter.setOnClickListener {
+            bottomSheet = FilterBottomSheet(this)
+            bottomSheet.show(childFragmentManager,"bottomSheet")
+        }
+
     }
 
     private fun setRecyclerView() {
@@ -61,10 +69,10 @@ class DummyFragment : Fragment(), CLickinter {
             list.addAll(it)
             var adaptor = AnimalAdaptor( list, this@DummyFragment)
             var adaptor1 = HorizontalAdaptor( list)
-            dummyBinding.homeMainRecyclerView.adapter = adaptor
-            dummyBinding.homeMainRecyclerView.layoutManager = LinearLayoutManager(context)
-            dummyBinding.homeHorizontalRecycler.adapter = adaptor1
-            dummyBinding.homeHorizontalRecycler.layoutManager = LinearLayoutManager(context,
+            dummyBinding.mainrecyclerview.adapter = adaptor
+            dummyBinding.mainrecyclerview.layoutManager = GridLayoutManager(context,2)
+            dummyBinding.horizontalrecycler.adapter = adaptor1
+            dummyBinding.horizontalrecycler.layoutManager = LinearLayoutManager(context,
             LinearLayoutManager.HORIZONTAL,false)
         })
     }
@@ -79,6 +87,13 @@ class DummyFragment : Fragment(), CLickinter {
         intent.putExtra("image", responseModel.animal_image)
         startActivity(intent)
 
+    }
+
+    override fun onFilter(newList: List<ResponseModel>) {
+        bottomSheet.dismiss()
+        list.clear()
+        list.addAll(newList)
+        dummyBinding.mainrecyclerview.adapter?.notifyDataSetChanged()
     }
 
 }

@@ -30,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Animal Details"
+        android:fontFamily="@font/poppins"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -50,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Animal category"
+            android:fontFamily="@font/poppins"
             android:maxLength="30"/>
 
         <EditText
@@ -57,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Animal description"
+            android:fontFamily="@font/poppins"
             android:maxLength="200"
             android:layout_marginTop="10dp"/>
 
@@ -67,6 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contact Details"
+        android:fontFamily="@font/poppins"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -86,6 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="User name"
+            android:fontFamily="@font/poppins"
             android:maxLength="30"/>
 
         <EditText
@@ -93,6 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Contact number"
+            android:fontFamily="@font/poppins"
             android:maxLength="10"
             android:inputType="phone"
             android:layout_marginTop="10dp"/>
@@ -102,6 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Contact address"
+            android:fontFamily="@font/poppins"
             android:maxLength="200"
             android:layout_marginTop="10dp"/>
 
@@ -119,6 +126,14 @@
         android:src="@drawable/ic_check_animal"
         app:maxImageSize="30sp"
         app:elevation="5dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"/>
+
+    <ProgressBar
+        android:id="@+id/pbProgress"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"/>
 

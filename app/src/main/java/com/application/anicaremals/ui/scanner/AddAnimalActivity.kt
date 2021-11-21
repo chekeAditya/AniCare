@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.net.toUri
 import com.application.anicaremals.R
@@ -17,6 +18,10 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_add_animal.*
 import kotlinx.android.synthetic.main.activity_animal_details.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class AddAnimalActivity : AppCompatActivity() {
 
@@ -45,8 +50,6 @@ class AddAnimalActivity : AppCompatActivity() {
 //                val fragmentTransaction = supportFragmentManager.beginTransaction()
 //                fragmentTransaction.replace(R.id.FragmentContanier12, DummyFragment(), "DummyFragment").commit()
 
-                val intent = Intent(this,BaseActivity::class.java)
-                startActivity(intent)
             } else {
                 Toast.makeText(this, "Please fill the Credentials", Toast.LENGTH_SHORT).show()
             }
@@ -56,6 +59,8 @@ class AddAnimalActivity : AppCompatActivity() {
     }
 
     private fun uploadImage(image: Uri?) {
+        fbAddAnimalConfirm.visibility = View.GONE
+        pbProgress.visibility = View.VISIBLE
         val fileRef = firebaseStorageReference.child("posts_images")
             .child(System.currentTimeMillis().toString() + ".jpg")
         fileRef.putFile(image!!).continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> {
@@ -86,6 +91,12 @@ class AddAnimalActivity : AppCompatActivity() {
             animal_category)
 
         firebaseReference.child("posts").child(user_name).setValue(responseModel)
+
+        val intent = Intent(this,BaseActivity::class.java)
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(3000)
+            startActivity(intent)
+        }
 
     }
 }

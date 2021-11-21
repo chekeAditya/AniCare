@@ -1,10 +1,16 @@
 package com.application.anicaremals.ui.home
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.application.anicaremals.R
 import com.application.anicaremals.databinding.ActivityMainBinding
@@ -18,13 +24,48 @@ class ProfileActivity : AppCompatActivity(), DeleteOnClick {
     private var list = mutableListOf<ResponseModel>()
     private lateinit var database: DatabaseReference
     private lateinit var adaptor: ProfileAnimalAdaptor
+    private val CHANNEL_ID = "channel_id_example_01"
+    private val notificationId = 101
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+
+    override
+
+    fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
         profilerecyclerview.layoutManager = LinearLayoutManager(this)
         getUserData()
+
+        createNodtificationChannel()
+    }
+
+    private fun createNodtificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Notification Tittle"
+            val descriptionText = "Notification Description"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    private fun sendNotification() {
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setContentTitle("The List Is as Expected more than 2 and it is ${list.size}")
+            .setContentText("The List is More ")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        with(NotificationManagerCompat.from(this)) {
+            notify(notificationId, builder.build())
+        }
     }
 
     private fun getUserData() {
@@ -42,6 +83,10 @@ class ProfileActivity : AppCompatActivity(), DeleteOnClick {
                     adaptor = ProfileAnimalAdaptor(this@ProfileActivity, list, this@ProfileActivity)
                     profilerecyclerview.adapter = adaptor
                     adaptor.notifyDataSetChanged()
+
+                    if (list.size >= 2){
+                        sendNotification()
+                    }
                 }
             }
 

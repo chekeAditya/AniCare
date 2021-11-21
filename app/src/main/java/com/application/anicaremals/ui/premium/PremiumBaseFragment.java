@@ -5,9 +5,7 @@ import static com.application.anicaremals.util.CONSTANTS.REQUEST_CODE;
 import static com.application.anicaremals.util.CONSTANTS.REQ_USER_CONSENT;
 
 import android.Manifest;
-import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -74,6 +72,8 @@ public class PremiumBaseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         viewModels = new ViewModelProvider(this).get(ApplicationViewModels.class);
 
+        //notification channel created
+        createNodtificationChannel();
         //initViews
         BarChart barChart = view.findViewById(R.id.barChart);
         PieChart pieChart = view.findViewById(R.id.pieChart);
@@ -103,6 +103,17 @@ public class PremiumBaseFragment extends Fragment {
 
     }
 
+    private void createNodtificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("Temperature Notification", "Sensor Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getActivity().getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+    }
+
+    private void getSmsTemperature() {
+        SmsRetrieverClient client = SmsRetriever.getClient(requireContext());
+        client.startSmsUserConsent(null);
 
     private void getSmsTemperatureUpdation() {
         IntentFilter intentFilter = new IntentFilter();
@@ -118,7 +129,6 @@ public class PremiumBaseFragment extends Fragment {
 //        client.startSmsUserConsent(null);
     }
 
-    /**
     private void registerBroadcastReceiver() {
 
         smsBroadcastReceiver = new SmsBroadcastReceiver();
@@ -126,7 +136,9 @@ public class PremiumBaseFragment extends Fragment {
         smsBroadcastReceiver.smsBroadcastReceiverListener = new SmsBroadcastReceiver.SmsBroadcastReceiverListener() {
             @Override
             public void onSuccess(Intent intent) {
+
                 startActivityForResult(intent, REQ_USER_CONSENT);
+
             }
 
             @Override
@@ -158,7 +170,6 @@ public class PremiumBaseFragment extends Fragment {
             barEntries.add(new BarEntry(1, matcher.groupCount()));
         }
     }
-    */
 
     private void fetchSMSDetails() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_SMS) !=
@@ -178,10 +189,27 @@ public class PremiumBaseFragment extends Fragment {
             int i = 0;
             while (cursor.moveToNext()) {
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.ADDRESS));
-                if (name != null) {
+                if(name != null) {
                     if (name.contains("57575791")) {
                         String details = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.BODY));
                         String number = details.substring(details.length() - 4);
+                        if (Integer.parseInt(number) >= 180) {
+                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "Sensor Notification");
+                            builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+                            builder.setContentTitle("The Temperature is more than expected ");
+                            builder.setContentText("Temperature is too High");
+
+                            NotificationManagerCompat managerCompat = NotificationManagerCompat.from(getContext());
+                            managerCompat.notify(1, builder.build());
+                        }else if(Integer.parseInt(number) <= 140){
+                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "Sensor Notification");
+                            builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+                            builder.setContentTitle("The Temperature is less than expected ");
+                            builder.setContentText("Temperature is too Less");
+
+                            NotificationManagerCompat managerCompat = NotificationManagerCompat.from(getContext());
+                            managerCompat.notify(1, builder.build());
+                        }
                         pieEntries.add(new PieEntry(cursor.getCount(), number));
                         barEntries.add(new BarEntry(i, Float.parseFloat(number)));
                         i++;
@@ -224,6 +252,13 @@ public class PremiumBaseFragment extends Fragment {
     private void setSmsList(List<Sms> newSmsList) {
         list = newSmsList;
         notify();
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        registerBroadcastReceiver();
     }
 
     @Override

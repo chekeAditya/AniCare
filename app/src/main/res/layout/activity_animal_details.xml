@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/teal_700"
+    android:background="@color/isNotSelected"
     tools:context=".ui.scanner.AnimalDetailsActivity">
 
     <ImageView
@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:text="Animal Details"
         android:textStyle="bold"
+        android:fontFamily="@font/poppins"
         android:textSize="20sp"
         android:textColor="@color/black"
         android:layout_margin="10dp"
@@ -45,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
+        android:fontFamily="@font/poppins"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,6 +59,7 @@
         android:textSize="16sp"
         android:text="Animals are such agreeable friends—they ask no questions they pass no criticisms."
         android:layout_margin="30dp"
+        android:fontFamily="@font/poppins"
         app:layout_constraintStart_toStartOf="@id/cvAnimalDetails"
         app:layout_constraintEnd_toEndOf="@id/cvAnimalDetails"
         app:layout_constraintTop_toBottomOf="@+id/tvLabel"/>

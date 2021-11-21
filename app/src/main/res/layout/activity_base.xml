@@ -8,12 +8,61 @@
         android:layout_height="match_parent"
         tools:context=".ui.BaseActivity">
 
+        <Toolbar
+            android:id="@+id/tbTop"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            android:layout_alignParentTop="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AniCare"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/teal_700"
+                    android:textStyle="bold"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@id/ivMenu"/>
+
+                <ImageView
+                    android:id="@+id/ivMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:src="@drawable/ic_menuicon" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toStartOf="@id/tvBell"
+                    android:src="@drawable/ic_chaticon" />
+
+                <ImageView
+                    android:id="@+id/tvBell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_bell"/>
+
+            </RelativeLayout>
+
+        </Toolbar>
+
         <fragment
             android:id="@+id/navHostFragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/cvBottom"
+            android:layout_below="@+id/tbTop"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
             app:defaultNavHost="true"
