@@ -14,5 +14,5 @@ interface DeleteOnClick {
 }
 
 interface Filter{
-    fun onFilter(list: List<ResponseModel>)
+    fun onFilter(newList: List<ResponseModel>)
 }

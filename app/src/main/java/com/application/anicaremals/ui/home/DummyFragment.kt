@@ -20,11 +20,13 @@ import com.application.anicaremals.ui.scanner.ScanAnimalActivity
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_dummy.*
 
-class DummyFragment : Fragment(), CLickinter {
+class DummyFragment : Fragment(), CLickinter, Filter {
 
     private lateinit var dummyBinding: FragmentDummyBinding
 
     private var list = mutableListOf<ResponseModel>()
+
+    private lateinit var bottomSheet: FilterBottomSheet
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +56,11 @@ class DummyFragment : Fragment(), CLickinter {
             startActivity(intent)
         }
 
+        dummyBinding.ivFilter.setOnClickListener {
+            bottomSheet = FilterBottomSheet(list,this)
+            bottomSheet.show(childFragmentManager,"bottomSheet")
+        }
+
     }
 
     private fun setRecyclerView() {
@@ -80,6 +87,13 @@ class DummyFragment : Fragment(), CLickinter {
         intent.putExtra("image", responseModel.animal_image)
         startActivity(intent)
 
+    }
+
+    override fun onFilter(newList: List<ResponseModel>) {
+        bottomSheet.dismiss()
+        list.clear()
+        list.addAll(newList)
+        dummyBinding.mainrecyclerview.adapter?.notifyDataSetChanged()
     }
 
 }
