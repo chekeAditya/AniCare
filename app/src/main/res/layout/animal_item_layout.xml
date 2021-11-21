@@ -4,27 +4,27 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/addcardview"
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="20dp">
+        android:layout_margin="8dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="8dp">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/car1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_margin="5dp"
                 app:cardCornerRadius="15dp">
 
                 <ImageView
                     android:id="@+id/ivImageDisplay"
-                    android:layout_width="130dp"
-                    android:layout_height="120dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/aditya"
                     app:cardCornerRadius="30dp" />
@@ -36,31 +36,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvAnimalCategory"
+                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/poppins"
-                android:text="Hey the Animals Deatils are as follow "
-                android:textSize="12dp" />
+                android:text="Animals Deatils"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvAnimalCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/car1"
+                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/poppins"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Dog"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
             <TextView
+                android:textSize="13sp"
                 android:id="@+id/count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvAnimalDetials"
+                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="5dp"
-                android:drawableLeft="@drawable/ic_baseline_location_on_24"
+                android:fontFamily="@font/poppins"
                 android:paddingTop="5dp"
                 android:text="address" />
 

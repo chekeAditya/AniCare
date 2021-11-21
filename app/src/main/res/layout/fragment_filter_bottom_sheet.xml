@@ -1,108 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".ui.home.FilterBottomSheet"
-    android:padding="20dp">
+    android:layout_height="match_parent"
+   android:layout_margin="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp"
+    app:cardCornerRadius="20dp"
+    tools:context=".ui.home.FilterBottomSheet">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/poppins"
-        android:text="Dog" />
+    <RelativeLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <CheckBox
-        android:id="@+id/cbDog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="Dog"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:layout_below="@+id/cbDog"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/poppins"
-        android:text="Cat" />
+        <CheckBox
+            android:id="@+id/cbDog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true" />
 
-    <CheckBox
-        android:id="@+id/cbCat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cbDog"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentEnd="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbDog"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins"
+            android:text="Cat"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:layout_below="@+id/cbCat"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/poppins"
-        android:text="Cow" />
+        <CheckBox
+            android:id="@+id/cbCat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbDog"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp" />
 
-    <CheckBox
-        android:id="@+id/cbCow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cbCat"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentEnd="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbCat"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins"
+            android:text="Cow"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:layout_below="@+id/cbCow"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/poppins"
-        android:text="Horse" />
+        <CheckBox
+            android:id="@+id/cbCow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbCat"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp" />
 
-    <CheckBox
-        android:id="@+id/cbHorse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cbCow"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentEnd="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbCow"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins"
+            android:text="Horse"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:layout_below="@+id/cbHorse"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/poppins"
-        android:text="Goat" />
+        <CheckBox
+            android:id="@+id/cbHorse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbCow"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp" />
 
-    <CheckBox
-        android:id="@+id/cbGoat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cbHorse"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentEnd="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbHorse"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins"
+            android:text="Goat"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/btnFilter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Apply"
-        android:textSize="20sp"
-        android:fontFamily="@font/poppins"
-        android:textColor="@color/white"
-        android:background="@color/teal_700"
-        android:layout_below="@+id/cbGoat"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentEnd="true"/>
+        <CheckBox
+            android:id="@+id/cbGoat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbHorse"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/btnFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbGoat"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:background="@drawable/rectangular_bg_apply_circular"
+            android:fontFamily="@font/poppins"
+            android:text="Apply"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

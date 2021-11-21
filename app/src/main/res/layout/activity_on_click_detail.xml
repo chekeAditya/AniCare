@@ -58,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="Animal Description"
+                android:fontFamily="@font/poppins"
                 android:layout_marginTop="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -71,10 +72,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/cv2"
-        android:textColor="@color/black"
-        android:textSize="18dp"        android:layout_marginLeft="24dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_medium"
+        android:textStyle="bold"
         android:layout_marginTop="30dp"
-        android:text="User Name: " />
+        android:text="User Name: "
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tvDetailusername"
@@ -82,12 +86,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/cv2"
         android:layout_marginStart="5dp"
-        android:textColor="@color/black"
-        android:textSize="18dp"
         android:layout_marginTop="30dp"
         android:layout_toRightOf="@id/user1"
         android:fontFamily="@font/poppins"
-        android:text="posted by sudrshan" />
+        android:text="posted by sudrshan"
+        android:textColor="@color/black"
+        android:textSize="17sp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btndetialcall"
@@ -102,12 +106,14 @@
         android:src="@drawable/ic_baseline_call_24" />
 
     <TextView
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/user2"
         android:layout_marginTop="35dp"
         android:layout_toRightOf="@id/btndetialcall"
-        android:text="You can call a Person " />
+        android:text="Call this person via Phone" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btndetialmess"
@@ -123,31 +129,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/user2"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_medium"
         android:layout_marginTop="135dp"
         android:layout_toRightOf="@id/btndetialmess"
-        android:text="You can Message a Person" />
+        android:text="Message the User via Sms" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/user1"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/ic_baseline_location_on_24"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/user2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/user1"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_medium"
+        android:textStyle="bold"
         android:layout_marginTop="20dp"
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        android:layout_toRightOf="@id/imageView2"
         android:paddingTop="2dp"
-        android:text="User Location : " />
+        android:text="User Location : "
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tvUserDettiallocation"
@@ -155,12 +156,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/user1"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="20dp"
         android:layout_toRightOf="@id/user2"
         android:text="User Location"
         android:textColor="@color/black"
-        android:textSize="18dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        android:textSize="17sp"
         app:layout_constraintTop_toBottomOf="@+id/tvDetialsImageView" />
 
 
