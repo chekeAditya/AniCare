@@ -64,9 +64,9 @@ class AnimalDetailsActivity : AppCompatActivity() {
         labeler.process(getInputImage())
             .addOnSuccessListener {
                 for (label in it) {
-                    if (label.text == "Cow" || label.text == "Buffalo")
+//                    if (label.text == "Cow" || label.text == "Buffalo")
                     tvLabel.text = label.text
-                    else tvLabel.text = "Buffalo"
+//                    else tvLabel.text = "Buffalo"
                 }
             }
     }
