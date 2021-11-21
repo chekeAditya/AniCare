@@ -42,10 +42,12 @@
                 android:id="@+id/tvdetailsanmialbread"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
                 android:layout_marginTop="4dp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Dog"
+                android:textColor="@color/black"
                 android:textSize="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,10 +56,11 @@
                 android:id="@+id/tvdetialAnimalDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="10dp"
                 android:text="Animal Description"
+                android:layout_marginTop="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -68,7 +71,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/cv2"
-        android:layout_marginLeft="24dp"
+        android:textColor="@color/black"
+        android:textSize="18dp"        android:layout_marginLeft="24dp"
         android:layout_marginTop="30dp"
         android:text="User Name: " />
 
@@ -78,8 +82,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/cv2"
         android:layout_marginStart="5dp"
+        android:textColor="@color/black"
+        android:textSize="18dp"
         android:layout_marginTop="30dp"
         android:layout_toRightOf="@id/user1"
+        android:fontFamily="@font/poppins"
         android:text="posted by sudrshan" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -87,8 +94,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/user2"
-        android:layout_margin="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="#228B22"
         android:src="@drawable/ic_baseline_call_24" />
 
@@ -134,7 +143,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/user1"
         android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:textSize="18dp"
         android:layout_toRightOf="@id/imageView2"
+        android:paddingTop="2dp"
         android:text="User Location : " />
 
     <TextView
@@ -143,9 +155,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/user1"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="22dp"
         android:layout_toRightOf="@id/user2"
         android:text="User Location"
+        android:textColor="@color/black"
+        android:textSize="18dp"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/tvDetialsImageView" />
 

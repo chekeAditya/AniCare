@@ -94,7 +94,6 @@ class HorizontalHolder(val itemHorizontalscroolviewLayoutBinding: ItemHorizontal
 
 
     fun setData(responseModel: ResponseModel) {
-        itemHorizontalscroolviewLayoutBinding.tvhzname.text = responseModel.animal_category
         Glide.with(itemHorizontalscroolviewLayoutBinding.cihzview).load(responseModel.animal_image)
             .into(
                 itemHorizontalscroolviewLayoutBinding.cihzview

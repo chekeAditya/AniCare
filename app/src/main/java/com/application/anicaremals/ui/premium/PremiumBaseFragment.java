@@ -3,11 +3,14 @@ package com.application.anicaremals.ui.premium;
 import static com.application.anicaremals.util.CONSTANTS.REQUEST_CODE;
 
 import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.ContentResolver;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Telephony;
 import android.view.LayoutInflater;
@@ -17,6 +20,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -46,7 +51,7 @@ public class PremiumBaseFragment extends Fragment {
     ArrayList<BarEntry> barEntries = new ArrayList<>();
     ArrayList<PieEntry> pieEntries = new ArrayList<>();
     ApplicationViewModels viewModels;
-    List<Sms> list =  Collections.emptyList();
+    List<Sms> list = Collections.emptyList();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +64,8 @@ public class PremiumBaseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         viewModels = new ViewModelProvider(this).get(ApplicationViewModels.class);
 
+        //notification channel created
+        createNodtificationChannel();
         //initViews
         BarChart barChart = view.findViewById(R.id.barChart);
         PieChart pieChart = view.findViewById(R.id.pieChart);
@@ -79,6 +86,14 @@ public class PremiumBaseFragment extends Fragment {
 
     }
 
+    private void createNodtificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("Temperature Notification", "Sensor Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getActivity().getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+    }
+
     private void fetchSMSDetails() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_SMS) !=
                 PackageManager.PERMISSION_GRANTED) {
@@ -97,10 +112,27 @@ public class PremiumBaseFragment extends Fragment {
             int i = 0;
             while (cursor.moveToNext()) {
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.ADDRESS));
-                if(name != null) {
+                if (name != null) {
                     if (name.contains("57575791")) {
                         String details = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.BODY));
                         String number = details.substring(details.length() - 4);
+                        if (Integer.parseInt(number) >= 180) {
+                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "Sensor Notification");
+                            builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+                            builder.setContentTitle("The Temperature is more than expected ");
+                            builder.setContentText("Temperature is too High");
+
+                            NotificationManagerCompat managerCompat = NotificationManagerCompat.from(getContext());
+                            managerCompat.notify(1, builder.build());
+                        }else if(Integer.parseInt(number) <= 140){
+                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "Sensor Notification");
+                            builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+                            builder.setContentTitle("The Temperature is less than expected ");
+                            builder.setContentText("Temperature is too Less");
+
+                            NotificationManagerCompat managerCompat = NotificationManagerCompat.from(getContext());
+                            managerCompat.notify(1, builder.build());
+                        }
                         pieEntries.add(new PieEntry(cursor.getCount(), number));
                         barEntries.add(new BarEntry(i, Float.parseFloat(number)));
                         i++;
@@ -139,7 +171,7 @@ public class PremiumBaseFragment extends Fragment {
         barChart.animateY(2000);
     }
 
-    private void setSmsList(List<Sms> newSmsList){
+    private void setSmsList(List<Sms> newSmsList) {
         list = newSmsList;
         notify();
     }

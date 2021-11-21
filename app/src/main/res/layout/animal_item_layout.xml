@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/addcardview"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:id="@+id/addcardview"
         app:cardCornerRadius="20dp">
 
         <RelativeLayout
@@ -16,16 +16,16 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/car1"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                app:cardCornerRadius="15dp"
                 android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
+                app:cardCornerRadius="15dp">
 
                 <ImageView
                     android:id="@+id/ivImageDisplay"
-                    android:layout_width="100dp"
-                    android:scaleType="fitXY"
+                    android:layout_width="130dp"
                     android:layout_height="120dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/aditya"
                     app:cardCornerRadius="30dp" />
             </androidx.cardview.widget.CardView>
@@ -38,7 +38,9 @@
                 android:layout_below="@id/tvAnimalCategory"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
-                android:text="Hey the Animals Deatils are as follow " />
+                android:fontFamily="@font/poppins"
+                android:text="Hey the Animals Deatils are as follow "
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/tvAnimalCategory"
@@ -47,7 +49,9 @@
                 android:layout_below="@id/car1"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
-                android:text="Dog" />
+                android:fontFamily="@font/poppins"
+                android:text="Dog"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/count"
@@ -55,9 +59,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvAnimalDetials"
                 android:layout_marginLeft="10dp"
-                android:paddingTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:drawableLeft="@drawable/ic_baseline_location_on_24"
+                android:paddingTop="5dp"
                 android:text="address" />
 
         </RelativeLayout>

@@ -20,11 +20,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvhzname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/cihzview"
-            android:layout_marginLeft="25dp" />
     </RelativeLayout>
 </layout>

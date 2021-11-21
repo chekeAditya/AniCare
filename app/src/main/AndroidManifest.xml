@@ -41,12 +41,10 @@
             android:name=".ui.scanner.AnimalDetailsActivity"
             android:exported="false" />
 
-        <activity
-            android:name=".ui.home.MainActivity"
-            android:exported="false">
-
-
-        </activity>
+<!--        <activity-->
+<!--            android:name=".ui.home.MainActivity"-->
+<!--            android:exported="false">-->
+<!--        </activity>-->
         <activity
             android:name=".ui.scanner.ScanAnimalActivity"
             android:exported="true" />

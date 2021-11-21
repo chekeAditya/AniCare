@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.application.anicaremals.R
@@ -61,10 +62,10 @@ class DummyFragment : Fragment(), CLickinter {
             list.addAll(it)
             var adaptor = AnimalAdaptor( list, this@DummyFragment)
             var adaptor1 = HorizontalAdaptor( list)
-            dummyBinding.homeMainRecyclerView.adapter = adaptor
-            dummyBinding.homeMainRecyclerView.layoutManager = LinearLayoutManager(context)
-            dummyBinding.homeHorizontalRecycler.adapter = adaptor1
-            dummyBinding.homeHorizontalRecycler.layoutManager = LinearLayoutManager(context,
+            dummyBinding.mainrecyclerview.adapter = adaptor
+            dummyBinding.mainrecyclerview.layoutManager = GridLayoutManager(context,2)
+            dummyBinding.horizontalrecycler.adapter = adaptor1
+            dummyBinding.horizontalrecycler.layoutManager = LinearLayoutManager(context,
             LinearLayoutManager.HORIZONTAL,false)
         })
     }
