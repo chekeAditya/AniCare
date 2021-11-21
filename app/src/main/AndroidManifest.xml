@@ -15,9 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Anicaremals">
+
         <activity
             android:name=".ui.BaseActivity"
-            android:exported="true" >
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,18 +42,13 @@
             android:exported="false" />
 
         <activity
-            android:name=".ui.home.MainActivity"
-            android:exported="false">
-
-
-        </activity>
-        <activity
             android:name=".ui.scanner.ScanAnimalActivity"
             android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

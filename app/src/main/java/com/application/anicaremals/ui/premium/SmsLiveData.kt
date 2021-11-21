@@ -40,6 +40,7 @@ class SmsLiveData(private val context: Context) :
             }
             cursor.close()
         }
+
         return listOfSms
     }
     override fun getContentProvidersValue() = getSms(context)

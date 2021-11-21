@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
@@ -20,6 +19,7 @@
         <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/fragment_premium_base.xml" value="0.3729166666666667" />
         <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/fragment_premium_base_1.xml" value="0.38697916666666665" />
         <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/item_layout.xml" value="0.21875" />
+        <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/layout/profile_animal_item_layout.xml" value="0.38697916666666665" />
         <entry key="..\:/Android Development/Projects/AniCareMals/version_0.1/app/src/main/res/menu/bottom_nav_menu.xml" value="0.38697916666666665" />
         <entry key="..\:/unit-3-Projects/Anicaremals/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
       </map>

@@ -1,9 +1,13 @@
 package com.application.anicaremals.ui.premium;
 
+import static android.app.Activity.RESULT_OK;
 import static com.application.anicaremals.util.CONSTANTS.REQUEST_CODE;
+import static com.application.anicaremals.util.CONSTANTS.REQ_USER_CONSENT;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -19,11 +23,11 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.application.anicaremals.R;
 import com.application.anicaremals.remote.response.Sms;
+import com.application.anicaremals.ui.premium.broadcastReceiver.SmsBroadcastReceiver;
 import com.application.anicaremals.viewmodels.ApplicationViewModels;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -34,10 +38,14 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.gms.auth.api.phone.SmsRetriever;
+import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class PremiumBaseFragment extends Fragment {
@@ -46,7 +54,11 @@ public class PremiumBaseFragment extends Fragment {
     ArrayList<BarEntry> barEntries = new ArrayList<>();
     ArrayList<PieEntry> pieEntries = new ArrayList<>();
     ApplicationViewModels viewModels;
-    List<Sms> list =  Collections.emptyList();
+    List<Sms> list = Collections.emptyList();
+
+    //BroadCast Receiver
+    SmsBroadcastReceiver smsBroadcastReceiver;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,21 +74,71 @@ public class PremiumBaseFragment extends Fragment {
         //initViews
         BarChart barChart = view.findViewById(R.id.barChart);
         PieChart pieChart = view.findViewById(R.id.pieChart);
+/*
+ //settingup viewModel to get live update
+        viewModels.getSms().observe(getViewLifecycleOwner(), new Observer<List<? extends Sms>>() {
+            @Override
+            public void onChanged(List<? extends Sms> sms) {
 
-        //settingup viewModel to get live update
-//        viewModels.getSms().observe(getViewLifecycleOwner(), new Observer<List<? extends Sms>>() {
-//            @Override
-//            public void onChanged(List<? extends Sms> sms) {
-//
-//            }
-//        });
+            }
+        });
+ */
 
+
+        getSmsTemperature();
         fetchSMSDetails();
 
         //settingUp the layout
         settingUpBarChart(barChart);
         settingUpPieChart(pieChart);
 
+    }
+
+    private void getSmsTemperature() {
+        SmsRetrieverClient client = SmsRetriever.getClient(requireContext());
+        client.startSmsUserConsent(null);
+    }
+
+    private void registerBroadcastReceiver() {
+
+        smsBroadcastReceiver = new SmsBroadcastReceiver();
+
+        smsBroadcastReceiver.smsBroadcastReceiverListener = new SmsBroadcastReceiver.SmsBroadcastReceiverListener() {
+            @Override
+            public void onSuccess(Intent intent) {
+
+                startActivityForResult(intent, REQ_USER_CONSENT);
+
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        };
+        IntentFilter intentFilter = new IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION);
+        getContext().registerReceiver(smsBroadcastReceiver, intentFilter);
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQ_USER_CONSENT) {
+            if ((resultCode == RESULT_OK) && (data != null)) {
+                String message = data.getStringExtra(SmsRetriever.EXTRA_SMS_MESSAGE);
+                getTemperature(message);
+            }
+        }
+    }
+
+    private void getTemperature(String message) {
+        Pattern temperaturePattern = Pattern.compile("(|^)\\d{3}"); //here we are extracting 3 digit
+        Matcher matcher = temperaturePattern.matcher(message);
+        if (matcher.find()) {
+            pieEntries.add(new PieEntry(1, matcher.group()));
+            barEntries.add(new BarEntry(1, matcher.groupCount()));
+        }
     }
 
     private void fetchSMSDetails() {
@@ -97,7 +159,7 @@ public class PremiumBaseFragment extends Fragment {
             int i = 0;
             while (cursor.moveToNext()) {
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.ADDRESS));
-                if(name != null) {
+                if (name != null) {
                     if (name.contains("57575791")) {
                         String details = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.BODY));
                         String number = details.substring(details.length() - 4);
@@ -108,6 +170,7 @@ public class PremiumBaseFragment extends Fragment {
                 }
             }
         }
+//        fetchSMSDetails();
     }
 
     //coroutine fetching live data
@@ -139,9 +202,22 @@ public class PremiumBaseFragment extends Fragment {
         barChart.animateY(2000);
     }
 
-    private void setSmsList(List<Sms> newSmsList){
+    private void setSmsList(List<Sms> newSmsList) {
         list = newSmsList;
         notify();
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        registerBroadcastReceiver();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        getContext().unregisterReceiver(smsBroadcastReceiver);
     }
 
 }
