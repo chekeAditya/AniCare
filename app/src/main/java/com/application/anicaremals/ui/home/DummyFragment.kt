@@ -57,7 +57,7 @@ class DummyFragment : Fragment(), CLickinter, Filter {
         }
 
         dummyBinding.ivFilter.setOnClickListener {
-            bottomSheet = FilterBottomSheet(list,this)
+            bottomSheet = FilterBottomSheet(this)
             bottomSheet.show(childFragmentManager,"bottomSheet")
         }
 
