@@ -5,7 +5,9 @@ import static com.application.anicaremals.util.CONSTANTS.REQUEST_CODE;
 import static com.application.anicaremals.util.CONSTANTS.REQ_USER_CONSENT;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -57,7 +59,8 @@ public class PremiumBaseFragment extends Fragment {
     List<Sms> list = Collections.emptyList();
 
     //BroadCast Receiver
-    SmsBroadcastReceiver smsBroadcastReceiver;
+    BroadcastReceiver smsBroadcastReceiver;
+//    SmsBroadcastReceiver smsBroadcastReceiver;
 
 
     @Override
@@ -74,6 +77,14 @@ public class PremiumBaseFragment extends Fragment {
         //initViews
         BarChart barChart = view.findViewById(R.id.barChart);
         PieChart pieChart = view.findViewById(R.id.pieChart);
+        //onclickListener
+        barChart.setOnClickListener(v -> {
+            fetchSMSDetails();
+        });
+        pieChart.setOnClickListener(v -> {
+            fetchSMSDetails();
+        });
+
 /*
  //settingup viewModel to get live update
         viewModels.getSms().observe(getViewLifecycleOwner(), new Observer<List<? extends Sms>>() {
@@ -83,9 +94,7 @@ public class PremiumBaseFragment extends Fragment {
             }
         });
  */
-
-
-        getSmsTemperature();
+//        getSmsTemperature();
         fetchSMSDetails();
 
         //settingUp the layout
@@ -94,11 +103,22 @@ public class PremiumBaseFragment extends Fragment {
 
     }
 
-    private void getSmsTemperature() {
-        SmsRetrieverClient client = SmsRetriever.getClient(requireContext());
-        client.startSmsUserConsent(null);
+
+    private void getSmsTemperatureUpdation() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_TIME_TICK);
+        smsBroadcastReceiver = new SmsBroadcastReceiver(){
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                fetchSMSDetails();
+            }
+        };
+        getContext().registerReceiver(smsBroadcastReceiver,intentFilter);
+//        SmsRetrieverClient client = SmsRetriever.getClient(requireContext());
+//        client.startSmsUserConsent(null);
     }
 
+    /**
     private void registerBroadcastReceiver() {
 
         smsBroadcastReceiver = new SmsBroadcastReceiver();
@@ -106,9 +126,7 @@ public class PremiumBaseFragment extends Fragment {
         smsBroadcastReceiver.smsBroadcastReceiverListener = new SmsBroadcastReceiver.SmsBroadcastReceiverListener() {
             @Override
             public void onSuccess(Intent intent) {
-
                 startActivityForResult(intent, REQ_USER_CONSENT);
-
             }
 
             @Override
@@ -140,6 +158,7 @@ public class PremiumBaseFragment extends Fragment {
             barEntries.add(new BarEntry(1, matcher.groupCount()));
         }
     }
+    */
 
     private void fetchSMSDetails() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_SMS) !=
@@ -207,19 +226,23 @@ public class PremiumBaseFragment extends Fragment {
         notify();
     }
 
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        registerBroadcastReceiver();
-    }
-
     @Override
     public void onStop() {
         super.onStop();
-        getContext().unregisterReceiver(smsBroadcastReceiver);
+
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+//        getSmsTemperatureUpdation();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+//        getContext().unregisterReceiver(smsBroadcastReceiver);
+    }
 }
 
 /*
