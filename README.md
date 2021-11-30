@@ -6,7 +6,6 @@
 
 * [MVVM-Architecture](https://developer.android.com/jetpack/guide)
 * [Viewmodel-LiveData](https://developer.android.com/codelabs/basic-android-kotlin-training-livedata#0)
-* [Room Database](https://developer.android.com/reference/android/arch/persistence/room/RoomDatabase)
 * [Dependency Injection-Hilt](https://developer.android.com/training/dependency-injection)
 * [Coroutines](https://developer.android.com/kotlin/coroutines)
 * [Lottie Library](https://github.com/airbnb/lottie-android)
