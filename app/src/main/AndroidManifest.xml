@@ -4,22 +4,25 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-
     <uses-feature android:name="android.hardware.camera.any" />
     <uses-permission android:name="android.permission.READ_SMS" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/app_img_modified"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/app_img_modified"
         android:supportsRtl="true"
         android:theme="@style/Theme.Anicaremals">
         <activity
-            android:name=".ui.BaseActivity"
-            android:launchMode="singleTask"
+            android:name=".ui.SplashScreenActivity"
             android:exported="true" >
+
+        </activity>
+        <activity
+            android:name=".ui.BaseActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +31,6 @@
             </intent-filter>
 
         </activity>
-
         <activity
             android:name=".ui.home.ProfileActivity"
             android:exported="true" />
@@ -41,11 +43,6 @@
         <activity
             android:name=".ui.scanner.AnimalDetailsActivity"
             android:exported="false" />
-
-<!--        <activity-->
-<!--            android:name=".ui.home.MainActivity"-->
-<!--            android:exported="false">-->
-<!--        </activity>-->
         <activity
             android:name=".ui.scanner.ScanAnimalActivity"
             android:exported="true" />

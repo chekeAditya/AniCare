@@ -1,5 +1,6 @@
 package com.application.anicaremals.ui.premium;
 
+import static com.application.anicaremals.util.CONSTANTS.CHANNEL_ID;
 import static com.application.anicaremals.util.CONSTANTS.REQUEST_CODE;
 
 import android.Manifest;
@@ -130,29 +131,29 @@ public class PremiumBaseFragment extends Fragment {
                     if (name.contains("57575791")) {
                         String details = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.BODY));
                         String number = details.substring(details.length() - 4);
-                        numberNotification = Integer.parseInt(number.trim());
+                        if (i == 0) {
+                            numberNotification = Integer.parseInt(number.trim());
+                        }
                         pieEntries.add(new PieEntry(cursor.getCount(), number));
                         barEntries.add(new BarEntry(i, Float.parseFloat(number)));
                         i++;
                     }
                 }
             }
-            int tempCount = 200;
-            if (tempCount >= 180) {
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "Sensor Notification");
+            if (numberNotification >= 180) {
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(), CHANNEL_ID);
                 builder.setSmallIcon(R.drawable.ic_launcher_foreground);
-                builder.setContentTitle("The Temperature is more than expected ");
-                builder.setContentText("Temperature is too High");
-
-                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(getContext());
+                builder.setContentTitle("Current Temperature High i.e: " + numberNotification);
+                builder.setContentText("Temperature goes above average temperature check precautions else contact expert");
+                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(requireContext());
                 managerCompat.notify(1, builder.build());
-            } else if (numberNotification <= 140) {
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "Sensor Notification");
-                builder.setSmallIcon(R.drawable.ic_launcher_foreground);
-                builder.setContentTitle("The Temperature is less than expected ");
-                builder.setContentText("Temperature is too Less");
 
-                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(getContext());
+            } else if (numberNotification <= 140) {
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(), CHANNEL_ID);
+                builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+                builder.setContentTitle("Current Temperature High i.e: " + numberNotification);
+                builder.setContentText("Temperature goes below average temperature check precautions else contact expert");
+                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(requireContext());
                 managerCompat.notify(1, builder.build());
             }
         }

@@ -28,6 +28,7 @@ import java.util.concurrent.Executors
 
 class ScanAnimalActivity : AppCompatActivity() {
 
+
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var outputDirectory: File
     private lateinit var cameraProvider: ProcessCameraProvider
@@ -91,6 +92,7 @@ class ScanAnimalActivity : AppCompatActivity() {
                 }
 
                 override fun onError(exception: ImageCaptureException) {
+
                 }
 
             })
