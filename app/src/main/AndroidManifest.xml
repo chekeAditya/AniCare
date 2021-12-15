@@ -14,11 +14,7 @@
         android:roundIcon="@drawable/app_img_modified"
         android:supportsRtl="true"
         android:theme="@style/Theme.Anicaremals">
-        <activity
-            android:name=".ui.SplashScreenActivity"
-            android:exported="true" >
 
-        </activity>
         <activity
             android:name=".ui.BaseActivity"
             android:exported="true"

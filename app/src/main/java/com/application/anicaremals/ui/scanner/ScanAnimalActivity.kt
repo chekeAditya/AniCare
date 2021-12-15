@@ -6,7 +6,9 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -15,6 +17,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.application.anicaremals.R
+import com.application.anicaremals.util.CONSTANTS.FILENAME_FORMAT
 import kotlinx.android.synthetic.main.activity_scan_animal.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,10 +36,6 @@ class ScanAnimalActivity : AppCompatActivity() {
     private lateinit var outputDirectory: File
     private lateinit var cameraProvider: ProcessCameraProvider
     private var imageCapture: ImageCapture? = null
-
-    companion object {
-        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,7 +91,7 @@ class ScanAnimalActivity : AppCompatActivity() {
                 }
 
                 override fun onError(exception: ImageCaptureException) {
-
+                    Log.d("AniCare", "onError: ${exception.message}")
                 }
 
             })
@@ -100,16 +99,13 @@ class ScanAnimalActivity : AppCompatActivity() {
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-
         cameraProviderFuture.addListener(Runnable {
             cameraProvider = cameraProviderFuture.get()
 
             val preview = Preview.Builder().build().also {
                 it.setSurfaceProvider(viewFinder.surfaceProvider)
             }
-
             imageCapture = ImageCapture.Builder().build()
-
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
             try {
                 cameraProvider.unbindAll()

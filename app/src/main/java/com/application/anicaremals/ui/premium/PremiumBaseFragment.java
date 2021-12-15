@@ -6,7 +6,6 @@ import static com.application.anicaremals.util.CONSTANTS.REQUEST_CODE;
 import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -54,11 +53,6 @@ public class PremiumBaseFragment extends Fragment {
     ApplicationViewModels viewModels;
     List<Sms> list = Collections.emptyList();
 
-    //BroadCast Receiver
-    BroadcastReceiver smsBroadcastReceiver;
-//    SmsBroadcastReceiver smsBroadcastReceiver;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,7 +65,7 @@ public class PremiumBaseFragment extends Fragment {
         viewModels = new ViewModelProvider(this).get(ApplicationViewModels.class);
 
         //notification channel created
-        createNodtificationChannel();
+        createNotificationChannel();
         //initViews
         BarChart barChart = view.findViewById(R.id.barChart);
         PieChart pieChart = view.findViewById(R.id.pieChart);
@@ -83,16 +77,7 @@ public class PremiumBaseFragment extends Fragment {
             fetchSMSDetails();
         });
 
-/*
- //settingup viewModel to get live update
-        viewModels.getSms().observe(getViewLifecycleOwner(), new Observer<List<? extends Sms>>() {
-            @Override
-            public void onChanged(List<? extends Sms> sms) {
 
-            }
-        });
- */
-//        getSmsTemperature();
         fetchSMSDetails();
 
         //settingUp the layout
@@ -101,7 +86,7 @@ public class PremiumBaseFragment extends Fragment {
 
     }
 
-    private void createNodtificationChannel() {
+    private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("Temperature Notification", "Sensor Notification", NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager manager = getActivity().getSystemService(NotificationManager.class);
@@ -157,10 +142,8 @@ public class PremiumBaseFragment extends Fragment {
                 managerCompat.notify(1, builder.build());
             }
         }
-//        fetchSMSDetails();
     }
 
-    //coroutine fetching live data
 
     private void settingUpPieChart(PieChart pieChart) {
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "");
@@ -187,35 +170,5 @@ public class PremiumBaseFragment extends Fragment {
         barChart.setData(barData);
         barChart.getDescription().setText("Temperature...");
         barChart.animateY(2000);
-    }
-
-    private void setSmsList(List<Sms> newSmsList) {
-        list = newSmsList;
-        notify();
-    }
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-//        registerBroadcastReceiver();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-//        getSmsTemperatureUpdation();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-//        getContext().unregisterReceiver(smsBroadcastReceiver);
     }
 }

@@ -24,5 +24,4 @@ abstract class ContentProviderLiveData<T>(
 
     abstract fun getContentProvidersValue(): T
 
-
 }

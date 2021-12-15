@@ -7,7 +7,4 @@ class ResponseModel(
     val animal_image: String? = " ",
     var animal_details: String? = " ",
     var animal_category: String? = " ",
-) {
-
-
-}
+)

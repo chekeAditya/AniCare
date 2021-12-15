@@ -4,14 +4,10 @@ import android.content.Context
 import android.net.Uri
 import android.provider.Telephony
 import com.application.anicaremals.remote.response.Sms
+import com.application.anicaremals.util.CONSTANTS.URI
 
 class SmsLiveData(private val context: Context) :
     ContentProviderLiveData<List<Sms>>(context, URI) {
-
-
-    companion object {
-        val URI = Uri.parse("content://sms/")
-    }
 
     private fun getSms(context: Context): List<Sms> {
         val listOfSms = mutableListOf<Sms>()
@@ -22,7 +18,7 @@ class SmsLiveData(private val context: Context) :
         val cursor = context.contentResolver.query(
             URI,
             projection,
-            null,
+            selection,
             selectionArgs,
             order
         )

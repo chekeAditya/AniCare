@@ -12,6 +12,6 @@
         tools:layout="@layout/fragment_premium_base" />
     <fragment
         android:id="@+id/dummyFragment"
-        android:name="com.application.anicaremals.ui.home.DummyFragment"
+        android:name="com.application.anicaremals.ui.home.HomeFragment"
         android:label="DummyFragment" />
 </navigation>

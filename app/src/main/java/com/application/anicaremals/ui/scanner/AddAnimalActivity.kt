@@ -42,13 +42,11 @@ class AddAnimalActivity : AppCompatActivity() {
         ivAnimalAdd.setImageURI(image?.toUri())
 
         fbAddAnimalConfirm.setOnClickListener {
-            if (etAddAnimalCategory.text.length != 0 && etAddAnimalDetails.text.length != 0 &&
-                etAddUserName.text.length != 0 && etAddPhoneNo.text.length != 0 &&
-                etAddAddress.text.length != 0
+            if (etAddAnimalCategory.text.isNotEmpty() && etAddAnimalDetails.text.isNotEmpty() &&
+                etAddUserName.text.isNotEmpty() && etAddPhoneNo.text.isNotEmpty() &&
+                etAddAddress.text.isNotEmpty()
             ) {
                 uploadImage(image?.toUri())
-//                val fragmentTransaction = supportFragmentManager.beginTransaction()
-//                fragmentTransaction.replace(R.id.FragmentContanier12, DummyFragment(), "DummyFragment").commit()
 
             } else {
                 Toast.makeText(this, "Please fill the Credentials", Toast.LENGTH_SHORT).show()
@@ -64,7 +62,7 @@ class AddAnimalActivity : AppCompatActivity() {
         val fileRef = firebaseStorageReference.child("posts_images")
             .child(System.currentTimeMillis().toString() + ".jpg")
         fileRef.putFile(image!!).continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> {
-            if (!it.isSuccessful()) {
+            if (!it.isSuccessful) {
                 Log.d("problem", it.exception.toString());
             }
             return@Continuation fileRef.downloadUrl

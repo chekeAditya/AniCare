@@ -19,31 +19,26 @@ import com.google.firebase.database.FirebaseDatabase
 
 class AnimalAdaptor(
     var list: List<ResponseModel>,
-    var listener: CLickinter,
+    var listener: ClickListener,
 ) : RecyclerView.Adapter<AnimalHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalHolder {
         val itemLayoutBinding: AnimalItemLayoutBinding =
-            DataBindingUtil.inflate(LayoutInflater.from(parent.context),
-                R.layout.animal_item_layout, parent, false)
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.animal_item_layout, parent, false
+            )
         return AnimalHolder(itemLayoutBinding)
     }
 
     override fun onBindViewHolder(holder: AnimalHolder, position: Int) {
-        var animallist = list[position]
-        holder.setData(animallist)
+        val animalList = list[position]
+        holder.setData(animalList)
         var i = 0
 
         holder.itemLayoutBinding.addcardview.setOnClickListener {
-            listener.OnClick(animallist)
+            listener.OnClick(animalList)
             i++;
-//            val sharedPreferences: SharedPreferences =
-//                getSharedPreferences("ViewCount", MODE_PRIVATE)
-//            val editor = sharedPreferences.edit()
-//            editor.putInt("VIEWCOUNT", i)
-//            editor.apply()
-//            holder.itemLayoutBinding.count.text = i.toString()
         }
-//        holder.itemLayoutBinding.tvUserName.text = animallist.user_name
     }
 
     override fun getItemCount(): Int {
@@ -52,17 +47,18 @@ class AnimalAdaptor(
 }
 
 class AnimalHolder(
-    var itemLayoutBinding: AnimalItemLayoutBinding,
-
-    ) : RecyclerView.ViewHolder(itemLayoutBinding.root) {
+    var itemLayoutBinding: AnimalItemLayoutBinding
+) : RecyclerView.ViewHolder(itemLayoutBinding.root) {
 
     fun setData(responseModel: ResponseModel) {
 
-        itemLayoutBinding.tvAnimalCategory.text = responseModel.animal_category.toString()
-        itemLayoutBinding.tvAnimalDetials.text = responseModel.animal_details.toString()
-        itemLayoutBinding.count.text = responseModel.user_address.toString()
-        Glide.with(itemLayoutBinding.ivImageDisplay).load(responseModel.animal_image)
-            .into(itemLayoutBinding.ivImageDisplay)
+        itemLayoutBinding.apply {
+            tvAnimalCategory.text = responseModel.animal_category.toString()
+            tvAnimalDetials.text = responseModel.animal_details.toString()
+            count.text = responseModel.user_address.toString()
+            Glide.with(ivImageDisplay).load(responseModel.animal_image)
+                .into(ivImageDisplay)
+        }
     }
 
 }
@@ -72,14 +68,16 @@ class HorizontalAdaptor(
 ) : RecyclerView.Adapter<HorizontalHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HorizontalHolder {
         val itemLayoutBinding: ItemHorizontalscroolviewLayoutBinding =
-            DataBindingUtil.inflate(LayoutInflater.from(parent.context),
-                R.layout.item_horizontalscroolview_layout, parent, false)
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.item_horizontalscroolview_layout, parent, false
+            )
         return HorizontalHolder(itemLayoutBinding)
     }
 
     override fun onBindViewHolder(holder: HorizontalHolder, position: Int) {
-        val animallist = list[position]
-        holder.setData(animallist)
+        val animalList = list[position]
+        holder.setData(animalList)
 
     }
 
@@ -89,14 +87,14 @@ class HorizontalAdaptor(
 
 }
 
-class HorizontalHolder(val itemHorizontalscroolviewLayoutBinding: ItemHorizontalscroolviewLayoutBinding) :
-    RecyclerView.ViewHolder(itemHorizontalscroolviewLayoutBinding.root) {
+class HorizontalHolder(private val itemHorizontalScrolViewLayoutBinding: ItemHorizontalscroolviewLayoutBinding) :
+    RecyclerView.ViewHolder(itemHorizontalScrolViewLayoutBinding.root) {
 
 
     fun setData(responseModel: ResponseModel) {
-        Glide.with(itemHorizontalscroolviewLayoutBinding.cihzview).load(responseModel.animal_image)
+        Glide.with(itemHorizontalScrolViewLayoutBinding.cihzview).load(responseModel.animal_image)
             .into(
-                itemHorizontalscroolviewLayoutBinding.cihzview
+                itemHorizontalScrolViewLayoutBinding.cihzview
             )
     }
 }
@@ -108,8 +106,10 @@ class ProfileAnimalAdaptor(
 ) : RecyclerView.Adapter<ProfileAnimalHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileAnimalHolder {
         val itemLayoutBinding: ProfileAnimalItemLayoutBinding =
-            DataBindingUtil.inflate(LayoutInflater.from(parent.context),
-                R.layout.profile_animal_item_layout, parent, false)
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.profile_animal_item_layout, parent, false
+            )
         return ProfileAnimalHolder(itemLayoutBinding)
     }
 
@@ -119,10 +119,6 @@ class ProfileAnimalAdaptor(
         holder.setData(animalprofile)
 
         holder.profileAnimalItemLayoutBinding.deleteOption.setOnClickListener {
-//            val myDatabase = FirebaseDatabase.getInstance().getReference("posts")
-//            myDatabase.child(animalprofile.user_name.toString()).removeValue()
-//            Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
-//            notifyDataSetChanged()
             listener.onDelete(animalprofile)
         }
 
@@ -146,32 +142,34 @@ class ProfileAnimalAdaptor(
 
             animalCategory.setText(animalprofile.animal_category)
             animalDescription.setText(animalprofile.animal_details)
-            animalUserName.setText(animalprofile.user_name)
+            animalUserName.text = animalprofile.user_name
             animalNumber.setText(animalprofile.user_phoneNumber)
             contactAddress.setText(animalprofile.user_address)
-            animalImage.setText(animalprofile.animal_image)
+            animalImage.text = animalprofile.animal_image
 
             builder.setPositiveButton("update", object : DialogInterface.OnClickListener {
                 override fun onClick(p0: DialogInterface?, p1: Int) {
 
 
-                    var detials =
+                    val detials =
                         animalCategory.text.toString()
-                    var category =
+                    val category =
                         animalDescription.text.toString()
-                    var phonenumber =
+                    val phonenumber =
                         animalNumber.text.toString()
 
                     val address =
                         contactAddress.text.toString()
 
                     val update =
-                        ResponseModel(animalUserName.text.toString(),
+                        ResponseModel(
+                            animalUserName.text.toString(),
                             phonenumber,
                             address,
                             animalImage.text.toString(),
                             detials,
-                            category)
+                            category
+                        )
                     val myDatabase = FirebaseDatabase.getInstance().getReference("posts")
                     myDatabase.child(update.user_name.toString()).setValue(update)
 
@@ -181,9 +179,6 @@ class ProfileAnimalAdaptor(
 
             val alert = builder.create()
             alert.show()
-
-
-//            listener.onEdit(animalprofile)
         }
     }
 
@@ -198,11 +193,12 @@ class ProfileAnimalHolder(
 ) : RecyclerView.ViewHolder(profileAnimalItemLayoutBinding.root) {
 
     fun setData(responseModel: ResponseModel) {
-        profileAnimalItemLayoutBinding.tvAnimalCategory.text =
-            responseModel.animal_category.toString()
-        profileAnimalItemLayoutBinding.tvAnimalDetials.text =
-            responseModel.animal_details.toString()
-        Glide.with(profileAnimalItemLayoutBinding.ivImageDisplay).load(responseModel.animal_image)
-            .into(profileAnimalItemLayoutBinding.ivImageDisplay)
+        profileAnimalItemLayoutBinding.apply {
+            tvAnimalCategory.text = responseModel.animal_category.toString()
+            tvAnimalDetials.text = responseModel.animal_details.toString()
+            Glide.with(ivImageDisplay).load(responseModel.animal_image)
+                .into(ivImageDisplay)
+
+        }
     }
 }
