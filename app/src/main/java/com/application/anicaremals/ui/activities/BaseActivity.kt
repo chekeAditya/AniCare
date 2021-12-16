@@ -1,4 +1,4 @@
-package com.application.anicaremals.ui
+package com.application.anicaremals.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,14 +9,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.application.anicaremals.R
 import com.application.anicaremals.databinding.ActivityBaseBinding
-import com.application.anicaremals.remote.response.ResponseModel
-import com.application.anicaremals.ui.home.FirebaseLiveDataList
-import com.application.anicaremals.ui.scanner.ScanAnimalActivity
+import com.application.anicaremals.localResponse.ResponseModel
+import com.application.anicaremals.ui.fragments.home.ProfileActivity
+import com.application.anicaremals.ui.fragments.scanner.ScanAnimalActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.animal_item_layout.*
 
 class BaseActivity : AppCompatActivity() {
 
@@ -48,7 +47,7 @@ class BaseActivity : AppCompatActivity() {
                     for (userSnapshot in snapshot.children) {
                         val user = userSnapshot.getValue(ResponseModel::class.java)
                         list.add(user!!)
-                        FirebaseLiveDataList.livedata.value = list
+                        ProfileActivity.livedata.value = list
                     }
                 }
             }

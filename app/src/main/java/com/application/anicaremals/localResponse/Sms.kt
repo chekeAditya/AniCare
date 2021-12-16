@@ -1,4 +1,4 @@
-package com.application.anicaremals.remote.response
+package com.application.anicaremals.localResponse
 
 data class Sms(
     val id: Int,

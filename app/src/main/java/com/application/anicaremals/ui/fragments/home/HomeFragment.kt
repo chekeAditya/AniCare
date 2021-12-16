@@ -1,4 +1,4 @@
-package com.application.anicaremals.ui.home
+package com.application.anicaremals.ui.fragments.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,9 +11,13 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.application.anicaremals.R
+import com.application.anicaremals.adapters.AnimalAdaptor
+import com.application.anicaremals.adapters.ClickListener
+import com.application.anicaremals.adapters.Filter
+import com.application.anicaremals.adapters.HorizontalAdaptor
 import com.application.anicaremals.databinding.FragmentDummyBinding
-import com.application.anicaremals.remote.response.ResponseModel
-import com.application.anicaremals.ui.scanner.ScanAnimalActivity
+import com.application.anicaremals.localResponse.ResponseModel
+import com.application.anicaremals.ui.fragments.scanner.ScanAnimalActivity
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_dummy.*
 
@@ -61,7 +65,7 @@ class HomeFragment : Fragment(), ClickListener, Filter {
     }
 
     private fun setRecyclerView() {
-        FirebaseLiveDataList.livedata.observe(viewLifecycleOwner, Observer {
+        ProfileActivity.livedata.observe(viewLifecycleOwner, Observer {
             list.clear()
             list.addAll(it)
             val animalAdaptor = AnimalAdaptor(list, this@HomeFragment)
@@ -85,7 +89,6 @@ class HomeFragment : Fragment(), ClickListener, Filter {
         intent.putExtra("userNumber", responseModel.user_phoneNumber)
         intent.putExtra("image", responseModel.animal_image)
         startActivity(intent)
-
     }
 
     override fun onFilter(newList: List<ResponseModel>) {

@@ -1,4 +1,4 @@
-package com.application.anicaremals.ui.premium
+package com.application.anicaremals.ui.fragments.premium
 
 import android.content.Context
 import android.database.ContentObserver

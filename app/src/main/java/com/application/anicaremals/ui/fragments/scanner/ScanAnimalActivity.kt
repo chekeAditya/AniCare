@@ -1,4 +1,4 @@
-package com.application.anicaremals.ui.scanner
+package com.application.anicaremals.ui.fragments.scanner
 
 import android.Manifest
 import android.content.Intent
@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException

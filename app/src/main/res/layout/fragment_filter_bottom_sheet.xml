@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="20dp"
     app:cardCornerRadius="20dp"
-    tools:context=".ui.home.FilterBottomSheet">
+    tools:context=".ui.fragments.home.FilterBottomSheet">
 
     <RelativeLayout
         android:layout_margin="20dp"

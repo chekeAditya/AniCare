@@ -1,13 +1,16 @@
-package com.application.anicaremals.ui.home
+package com.application.anicaremals.ui.fragments.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.application.anicaremals.R
-import com.application.anicaremals.remote.response.ResponseModel
+import com.application.anicaremals.adapters.DeleteOnClick
+import com.application.anicaremals.adapters.ProfileAnimalAdaptor
+import com.application.anicaremals.localResponse.ResponseModel
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.animal_update.view.*
@@ -16,6 +19,10 @@ class ProfileActivity : AppCompatActivity(), DeleteOnClick {
     private var list = mutableListOf<ResponseModel>()
     private lateinit var database: DatabaseReference
     private lateinit var adaptor: ProfileAnimalAdaptor
+
+    companion object{
+        var livedata = MutableLiveData<List<ResponseModel>>()
+    }
 
     override
     fun onCreate(savedInstanceState: Bundle?) {

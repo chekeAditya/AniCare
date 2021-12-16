@@ -7,11 +7,11 @@
 
     <fragment
         android:id="@+id/premiumBaseFragment"
-        android:name="com.application.anicaremals.ui.premium.PremiumBaseFragment"
+        android:name="com.application.anicaremals.ui.fragments.premium.PremiumBaseFragment"
         android:label="fragment_premium_base"
         tools:layout="@layout/fragment_premium_base" />
     <fragment
         android:id="@+id/dummyFragment"
-        android:name="com.application.anicaremals.ui.home.HomeFragment"
+        android:name="com.application.anicaremals.ui.fragments.home.HomeFragment"
         android:label="DummyFragment" />
 </navigation>

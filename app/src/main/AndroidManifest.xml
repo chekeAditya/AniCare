@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Anicaremals">
 
         <activity
-            android:name=".ui.BaseActivity"
+            android:name=".ui.activities.BaseActivity"
             android:exported="true"
             android:launchMode="singleTask">
 
@@ -28,19 +28,19 @@
 
         </activity>
         <activity
-            android:name=".ui.home.ProfileActivity"
+            android:name="com.application.anicaremals.ui.fragments.home.ProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.home.OnClickDetailActivity"
+            android:name="com.application.anicaremals.ui.fragments.home.OnClickDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.scanner.AddAnimalActivity"
+            android:name="com.application.anicaremals.ui.fragments.scanner.AddAnimalActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.scanner.AnimalDetailsActivity"
+            android:name="com.application.anicaremals.ui.fragments.scanner.AnimalDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.scanner.ScanAnimalActivity"
+            android:name="com.application.anicaremals.ui.fragments.scanner.ScanAnimalActivity"
             android:exported="true" />
 
         <meta-data

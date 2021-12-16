@@ -1,4 +1,4 @@
-package com.application.anicaremals.ui.scanner
+package com.application.anicaremals.ui.fragments.scanner
 
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -28,34 +28,11 @@ class AnimalDetailsActivity : AppCompatActivity() {
 
         labelImage()
 
-        // objectDetectionImage()
-
         fbAddAnimalDetails.setOnClickListener {
             val intent = Intent(baseContext, AddAnimalActivity::class.java)
             intent.putExtra("image", image)
             startActivity(intent)
         }
-
-    }
-
-    private fun objectDetectionImage() {
-        val options = ObjectDetectorOptions.Builder()
-            .setDetectorMode(ObjectDetectorOptions.SINGLE_IMAGE_MODE)
-            .build()
-
-        val objectDetector = ObjectDetection.getClient(options)
-
-        objectDetector.process(getInputImage())
-            .addOnSuccessListener { detectedObjects ->
-                for (detectedObject in detectedObjects){
-                    for (label in detectedObject.labels){
-                        tvLabel.text = label.text
-                    }
-                }
-            }
-            .addOnFailureListener{
-                Log.d("fail",it.toString())
-            }
 
     }
 

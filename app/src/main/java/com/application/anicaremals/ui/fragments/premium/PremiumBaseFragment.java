@@ -1,4 +1,4 @@
-package com.application.anicaremals.ui.premium;
+package com.application.anicaremals.ui.fragments.premium;
 
 import static com.application.anicaremals.util.CONSTANTS.CHANNEL_ID;
 import static com.application.anicaremals.util.CONSTANTS.REQUEST_CODE;
@@ -28,7 +28,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.application.anicaremals.R;
-import com.application.anicaremals.remote.response.Sms;
+import com.application.anicaremals.localResponse.Sms;
 import com.application.anicaremals.viewmodels.ApplicationViewModels;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;

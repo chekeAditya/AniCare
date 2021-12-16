@@ -1,4 +1,5 @@
-package com.application.anicaremals.remote.response
+package com.application.anicaremals.localResponse
+
 
 class ResponseModel(
     val user_name: String? = "",
@@ -6,5 +7,5 @@ class ResponseModel(
     val user_address: String? = " ",
     val animal_image: String? = " ",
     var animal_details: String? = " ",
-    var animal_category: String? = " ",
+    var animal_category: String? = " "
 )

@@ -1,4 +1,4 @@
-package com.application.anicaremals.ui.scanner
+package com.application.anicaremals.ui.fragments.scanner
 
 import android.content.Intent
 import android.net.Uri
@@ -9,8 +9,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.net.toUri
 import com.application.anicaremals.R
-import com.application.anicaremals.remote.response.ResponseModel
-import com.application.anicaremals.ui.BaseActivity
+import com.application.anicaremals.localResponse.ResponseModel
+import com.application.anicaremals.ui.activities.BaseActivity
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.FirebaseDatabase
@@ -90,7 +90,7 @@ class AddAnimalActivity : AppCompatActivity() {
 
         firebaseReference.child("posts").child(user_name).setValue(responseModel)
 
-        val intent = Intent(this,BaseActivity::class.java)
+        val intent = Intent(this, BaseActivity::class.java)
         CoroutineScope(Dispatchers.Main).launch {
             delay(3000)
             startActivity(intent)

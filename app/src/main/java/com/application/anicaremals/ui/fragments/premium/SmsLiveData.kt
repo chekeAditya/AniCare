@@ -1,9 +1,8 @@
-package com.application.anicaremals.ui.premium
+package com.application.anicaremals.ui.fragments.premium
 
 import android.content.Context
-import android.net.Uri
 import android.provider.Telephony
-import com.application.anicaremals.remote.response.Sms
+import com.application.anicaremals.localResponse.Sms
 import com.application.anicaremals.util.CONSTANTS.URI
 
 class SmsLiveData(private val context: Context) :

@@ -1,4 +1,4 @@
-package com.application.anicaremals.ui.home
+package com.application.anicaremals.ui.fragments.home
 
 import android.app.Dialog
 import android.os.Bundle
@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.application.anicaremals.R
-import com.application.anicaremals.remote.response.ResponseModel
+import com.application.anicaremals.adapters.Filter
+import com.application.anicaremals.localResponse.ResponseModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_filter_bottom_sheet.*
@@ -32,7 +33,7 @@ class FilterBottomSheet(private val click: Filter) :
             generateFilterList()
         }
 
-        FirebaseLiveDataList.livedata.observe(viewLifecycleOwner, Observer {
+        ProfileActivity.livedata.observe(viewLifecycleOwner, Observer {
             originalList.clear()
             originalList.addAll(it)
         })

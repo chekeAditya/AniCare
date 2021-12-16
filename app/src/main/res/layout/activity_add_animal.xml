@@ -16,7 +16,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.scanner.AddAnimalActivity">
+    tools:context=".ui.fragments.scanner.AddAnimalActivity">
 
     <ImageView
         android:id="@+id/ivAnimalAdd"

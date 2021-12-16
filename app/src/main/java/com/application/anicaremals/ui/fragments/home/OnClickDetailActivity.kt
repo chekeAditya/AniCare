@@ -1,4 +1,4 @@
-package com.application.anicaremals.ui.home
+package com.application.anicaremals.ui.fragments.home
 
 import android.content.Intent
 import android.content.pm.PackageManager

@@ -1,6 +1,6 @@
-package com.application.anicaremals.ui.home
+package com.application.anicaremals.adapters
 
-import com.application.anicaremals.remote.response.ResponseModel
+import com.application.anicaremals.localResponse.ResponseModel
 
 interface ClickListener {
 

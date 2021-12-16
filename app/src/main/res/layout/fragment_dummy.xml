@@ -85,7 +85,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="180dp"
             android:background="@drawable/background_topandright_close"
-            tools:context=".ui.home.MainActivity">
+            tools:context=".ui.fragments.home.MainActivity">
 
             <TextView
                 android:id="@+id/topop"
