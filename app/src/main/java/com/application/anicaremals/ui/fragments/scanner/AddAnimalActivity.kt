@@ -2,14 +2,14 @@ package com.application.anicaremals.ui.fragments.scanner
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.application.anicaremals.R
-import com.application.anicaremals.localResponse.ResponseModel
+import com.application.anicaremals.local.responses.ResponseModel
 import com.application.anicaremals.ui.activities.BaseActivity
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
@@ -47,13 +47,10 @@ class AddAnimalActivity : AppCompatActivity() {
                 etAddAddress.text.isNotEmpty()
             ) {
                 uploadImage(image?.toUri())
-
             } else {
                 Toast.makeText(this, "Please fill the Credentials", Toast.LENGTH_SHORT).show()
             }
-
         }
-
     }
 
     private fun uploadImage(image: Uri?) {
@@ -81,12 +78,14 @@ class AddAnimalActivity : AppCompatActivity() {
         val animal_details = etAddAnimalDetails.text.toString()
         val animal_category = etAddAnimalCategory.text.toString()
 
-        val responseModel = ResponseModel(user_name,
+        val responseModel = ResponseModel(
+            user_name,
             user_phoneNumber,
             user_address,
             animal_image,
             animal_details,
-            animal_category)
+            animal_category
+        )
 
         firebaseReference.child("posts").child(user_name).setValue(responseModel)
 

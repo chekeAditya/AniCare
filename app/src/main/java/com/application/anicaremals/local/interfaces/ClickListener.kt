@@ -1,6 +1,6 @@
 package com.application.anicaremals.adapters
 
-import com.application.anicaremals.localResponse.ResponseModel
+import com.application.anicaremals.local.responses.ResponseModel
 
 interface ClickListener {
 
@@ -11,8 +11,4 @@ interface DeleteOnClick {
     fun onDelete(responseModel: ResponseModel)
 
     fun onEdit(responseModel: ResponseModel)
-}
-
-interface Filter{
-    fun onFilter(newList: List<ResponseModel>)
 }

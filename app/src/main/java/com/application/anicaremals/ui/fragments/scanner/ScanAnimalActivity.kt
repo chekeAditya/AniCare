@@ -4,10 +4,10 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -17,10 +17,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.application.anicaremals.R
 import com.application.anicaremals.util.CONSTANTS.FILENAME_FORMAT
+import com.application.anicaremals.util.CONSTANTS.REQUEST_CODE_CAMERA
 import kotlinx.android.synthetic.main.activity_scan_animal.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.File
 import java.text.SimpleDateFormat
@@ -40,11 +40,14 @@ class ScanAnimalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_animal)
 
-        if(ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) !=
-            PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=
+            PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
                 arrayOf(Manifest.permission.CAMERA),
-                1)
+                REQUEST_CODE_CAMERA
+            )
         }
 
         outputDirectory = getOutputDirectory()
@@ -55,7 +58,32 @@ class ScanAnimalActivity : AppCompatActivity() {
         fbScanAnimal.setOnClickListener {
             takePicture()
         }
+    }
 
+    private fun startCamera() {
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+        cameraProviderFuture.addListener(Runnable {
+            cameraProvider = cameraProviderFuture.get()
+
+            val preview = Preview.Builder().build().also {
+                it.setSurfaceProvider(viewFinder.surfaceProvider)
+            }
+
+            imageCapture = ImageCapture.Builder().build()
+            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+            try {
+                cameraProvider.unbindAll()
+                cameraProvider.bindToLifecycle(
+                    this,
+                    cameraSelector,
+                    preview,
+                    imageCapture
+                )
+            } catch (e: Exception) {
+                Log.d("Anicare", "startCamera: ${e.message}")
+            }
+
+        }, ContextCompat.getMainExecutor(this))
     }
 
     private fun takePicture() {
@@ -76,14 +104,12 @@ class ScanAnimalActivity : AppCompatActivity() {
                     val savedUri = Uri.fromFile(photoFile)
                     if (intent.getStringExtra("add") != null) {
                         val intent = Intent(baseContext, AddAnimalActivity::class.java)
-                        intent.putExtra("image",savedUri.toString())
+                        intent.putExtra("image", savedUri.toString())
                         startActivity(intent)
-                    }
-                    else{
+                    } else {
                         val intent = Intent(baseContext, AnimalDetailsActivity::class.java)
-                        intent.putExtra("image",savedUri.toString())
+                        intent.putExtra("image", savedUri.toString())
                         CoroutineScope(Dispatchers.Main).launch {
-                            delay(4000)
                             startActivity(intent)
                         }
                     }
@@ -96,37 +122,13 @@ class ScanAnimalActivity : AppCompatActivity() {
             })
     }
 
-    private fun startCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-        cameraProviderFuture.addListener(Runnable {
-            cameraProvider = cameraProviderFuture.get()
-
-            val preview = Preview.Builder().build().also {
-                it.setSurfaceProvider(viewFinder.surfaceProvider)
-            }
-            imageCapture = ImageCapture.Builder().build()
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-            try {
-                cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(
-                    this,
-                    cameraSelector,
-                    preview,
-                    imageCapture
-                )
-            } catch (e: Exception) {
-
-            }
-
-        }, ContextCompat.getMainExecutor(this))
-    }
-
     private fun getOutputDirectory(): File {
         val mediaDir = externalMediaDirs.firstOrNull()?.let {
             File(it, resources.getString(R.string.app_name)).apply { mkdirs() }
         }
-        return if (mediaDir != null && mediaDir.exists())
-            mediaDir else filesDir
+        return if (mediaDir != null && mediaDir.exists()) {
+            mediaDir
+        } else filesDir
     }
 
     override fun onDestroy() {

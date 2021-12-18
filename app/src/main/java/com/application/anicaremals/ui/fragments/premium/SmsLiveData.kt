@@ -2,7 +2,7 @@ package com.application.anicaremals.ui.fragments.premium
 
 import android.content.Context
 import android.provider.Telephony
-import com.application.anicaremals.localResponse.Sms
+import com.application.anicaremals.local.responses.Sms
 import com.application.anicaremals.util.CONSTANTS.URI
 
 class SmsLiveData(private val context: Context) :
@@ -35,7 +35,6 @@ class SmsLiveData(private val context: Context) :
             }
             cursor.close()
         }
-
         return listOfSms
     }
     override fun getContentProvidersValue() = getSms(context)

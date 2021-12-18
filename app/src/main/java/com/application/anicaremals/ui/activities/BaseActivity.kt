@@ -9,9 +9,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.application.anicaremals.R
 import com.application.anicaremals.databinding.ActivityBaseBinding
-import com.application.anicaremals.localResponse.ResponseModel
-import com.application.anicaremals.ui.fragments.home.ProfileActivity
+import com.application.anicaremals.local.responses.ResponseModel
 import com.application.anicaremals.ui.fragments.scanner.ScanAnimalActivity
+import com.application.anicaremals.viewmodels.ApplicationViewModels
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener
 
 class BaseActivity : AppCompatActivity() {
 
-    lateinit var activityBaseBinding: ActivityBaseBinding
+    private lateinit var activityBaseBinding: ActivityBaseBinding
     private val database = FirebaseDatabase.getInstance().getReference("posts")
     private var list = mutableListOf<ResponseModel>()
 
@@ -29,7 +29,7 @@ class BaseActivity : AppCompatActivity() {
         activityBaseBinding = DataBindingUtil.setContentView(this, R.layout.activity_base)
         setContentView(activityBaseBinding.root)
 
-        getUserData()
+        getUserDataAndUpdateFirebase()
 
         val navController = findNavController(R.id.navHostFragment)
         activityBaseBinding.bottomNavigationView.setupWithNavController(navController)
@@ -39,7 +39,7 @@ class BaseActivity : AppCompatActivity() {
         }
     }
 
-    private fun getUserData() {
+    private fun getUserDataAndUpdateFirebase() {
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 list.clear()
@@ -47,7 +47,7 @@ class BaseActivity : AppCompatActivity() {
                     for (userSnapshot in snapshot.children) {
                         val user = userSnapshot.getValue(ResponseModel::class.java)
                         list.add(user!!)
-                        ProfileActivity.livedata.value = list
+                        ApplicationViewModels.livedata.value = list
                     }
                 }
             }
@@ -57,5 +57,4 @@ class BaseActivity : AppCompatActivity() {
             }
         })
     }
-
 }

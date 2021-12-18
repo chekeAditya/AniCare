@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.application.anicaremals.R
 import com.application.anicaremals.databinding.AnimalItemLayoutBinding
-import com.application.anicaremals.localResponse.ResponseModel
+import com.application.anicaremals.local.responses.ResponseModel
 import com.bumptech.glide.Glide
 
 class AnimalAdaptor(

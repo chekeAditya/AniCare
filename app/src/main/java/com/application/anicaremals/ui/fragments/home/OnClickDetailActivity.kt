@@ -37,5 +37,6 @@ class OnClickDetailActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+
     }
 }

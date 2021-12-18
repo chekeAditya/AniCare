@@ -22,8 +22,8 @@
         android:id="@+id/ivAnimalAdd"
         android:layout_width="match_parent"
         android:layout_height="300sp"
-        android:scaleType="centerCrop"
-        android:background="@drawable/bg_add_animal"/>
+        android:background="@drawable/bg_add_animal"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/tvAnimalDetails"

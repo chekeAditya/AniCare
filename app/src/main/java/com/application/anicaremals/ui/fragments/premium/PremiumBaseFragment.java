@@ -6,7 +6,6 @@ import static com.application.anicaremals.util.CONSTANTS.REQUEST_CODE;
 import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.ContentResolver;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -28,7 +27,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.application.anicaremals.R;
-import com.application.anicaremals.localResponse.Sms;
 import com.application.anicaremals.viewmodels.ApplicationViewModels;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -41,8 +39,6 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 
 public class PremiumBaseFragment extends Fragment {
@@ -51,7 +47,6 @@ public class PremiumBaseFragment extends Fragment {
     ArrayList<BarEntry> barEntries = new ArrayList<>();
     ArrayList<PieEntry> pieEntries = new ArrayList<>();
     ApplicationViewModels viewModels;
-    List<Sms> list = Collections.emptyList();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -100,7 +95,6 @@ public class PremiumBaseFragment extends Fragment {
             ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.READ_SMS}, REQUEST_CODE);
         }
 
-        ContentResolver resolver = requireActivity().getContentResolver();
         Uri allMessages = Uri.parse("content://sms/");
         String[] projection = null;
         String selection = null;

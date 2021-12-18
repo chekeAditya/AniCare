@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.application.anicaremals.R
 import com.application.anicaremals.databinding.ProfileAnimalItemLayoutBinding
-import com.application.anicaremals.localResponse.ResponseModel
+import com.application.anicaremals.local.responses.ResponseModel
 import com.bumptech.glide.Glide
 import com.google.firebase.database.FirebaseDatabase
 

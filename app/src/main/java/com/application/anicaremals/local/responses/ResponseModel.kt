@@ -1,4 +1,4 @@
-package com.application.anicaremals.localResponse
+package com.application.anicaremals.local.responses
 
 
 class ResponseModel(

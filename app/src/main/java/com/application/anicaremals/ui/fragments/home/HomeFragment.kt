@@ -13,19 +13,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.application.anicaremals.R
 import com.application.anicaremals.adapters.AnimalAdaptor
 import com.application.anicaremals.adapters.ClickListener
-import com.application.anicaremals.adapters.Filter
 import com.application.anicaremals.adapters.HorizontalAdaptor
 import com.application.anicaremals.databinding.FragmentDummyBinding
-import com.application.anicaremals.localResponse.ResponseModel
+import com.application.anicaremals.local.responses.ResponseModel
 import com.application.anicaremals.ui.fragments.scanner.ScanAnimalActivity
+import com.application.anicaremals.viewmodels.ApplicationViewModels
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_dummy.*
 
-class HomeFragment : Fragment(), ClickListener, Filter {
+class HomeFragment : Fragment(), ClickListener {
 
     private lateinit var homeFragmentBinding: FragmentDummyBinding
     private var list = mutableListOf<ResponseModel>()
-    private lateinit var bottomSheet: FilterBottomSheet
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,19 +52,14 @@ class HomeFragment : Fragment(), ClickListener, Filter {
         setRecyclerView()
 
         profileSection.setOnClickListener {
-            var intent = Intent(requireContext(), ProfileActivity::class.java)
+            val intent = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(intent)
-        }
-
-        homeFragmentBinding.ivFilter.setOnClickListener {
-            bottomSheet = FilterBottomSheet(this)
-            bottomSheet.show(childFragmentManager, "bottomSheet")
         }
 
     }
 
     private fun setRecyclerView() {
-        ProfileActivity.livedata.observe(viewLifecycleOwner, Observer {
+        ApplicationViewModels.livedata.observe(viewLifecycleOwner, Observer {
             list.clear()
             list.addAll(it)
             val animalAdaptor = AnimalAdaptor(list, this@HomeFragment)
@@ -81,7 +75,7 @@ class HomeFragment : Fragment(), ClickListener, Filter {
     }
 
     override fun OnClick(responseModel: ResponseModel) {
-        var intent = Intent(requireContext(), OnClickDetailActivity::class.java)
+        val intent = Intent(requireContext(), OnClickDetailActivity::class.java)
         intent.putExtra("username", responseModel.user_name)
         intent.putExtra("animalbread", responseModel.animal_category)
         intent.putExtra("animaldetials", responseModel.animal_details)
@@ -89,13 +83,6 @@ class HomeFragment : Fragment(), ClickListener, Filter {
         intent.putExtra("userNumber", responseModel.user_phoneNumber)
         intent.putExtra("image", responseModel.animal_image)
         startActivity(intent)
-    }
-
-    override fun onFilter(newList: List<ResponseModel>) {
-        bottomSheet.dismiss()
-        list.clear()
-        list.addAll(newList)
-        homeFragmentBinding.mainrecyclerview.adapter?.notifyDataSetChanged()
     }
 
 }

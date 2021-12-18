@@ -25,15 +25,12 @@ class AnimalDetailsActivity : AppCompatActivity() {
         image = intent.getStringExtra("image").toString()
 
         ivAnimalDetails.setImageURI(image.toUri())
-
         labelImage()
-
         fbAddAnimalDetails.setOnClickListener {
             val intent = Intent(baseContext, AddAnimalActivity::class.java)
             intent.putExtra("image", image)
             startActivity(intent)
         }
-
     }
 
     private fun labelImage() {
